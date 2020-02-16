@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // try 捕获在try中的代码异常信息，然后抛出，不继续往下运行
+        //                 如果没有异常信息，则会跳过catch继续往下运行
+        var i= 0
+        try{
+            console.log(i)   
+        }catch(e){
+            console.log(e)              // 抛出错误信息
+            console.log('sss')
+        }finally{                       // 不管上面发生什么情况都会运行下面的代码
+            console.log('我是最后了')
+        }
+
+        var user = 'bh'
+        try{
+            throw new Error('用户名错误')   //可以自定义抛出错误
+        }catch(e){
+            console.log(e)
+        }
+
+        //     RangeError：数值越界
+        // 　　ReferenceError：非法或不能识别的引用数值
+        // 　　SyntaxError：发生语法解析错误
+        // 　　TypeError：操作数类型错误
+        // 　　URIError：URI处理函数使用不当
+    </script>
+</body>
+</html>

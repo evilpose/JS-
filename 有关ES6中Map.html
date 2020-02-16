@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // map
+        // map()方法定义在js的Array中，它返回一个新的数组，数组中的元素为原始数组调用函数处理后的值
+        // map()不会对空数组进行检测
+        // map()不会改变原始数组
+
+        // var array1  = [1,2,3,4,5]
+        // const map1 = array1.map(x => x*2)
+        // console.log(map1)
+
+        // new Map([iterable])
+        // 参数:可以是数组或者其他的可迭代对象 .null 会被当作 undefined
+
+        // let myMap = new Map([
+        //     ['age',24],
+        //     ['name','xiixxi']
+        // ])
+        // console.log(myMap)
+        // console.log(myMap.size)
+
+        // Object 和 Map 比较
+        // 对象的键只能为字符串,但是Map的键可以是任意值
+        // 可以通过 Map.size 来获取 Map 的个数,但是 Object 必须要遍历来手动获取
+
+        // set()方法为Map()对象添加一个指定键(key)和值(value)的新元素,返回Map对象,若已经
+        // 存在键,则更新键值,否则,重建建立新键
+        // myMap.set(key,value)
+        // get()方法用来获取一个Map对象中指定的元素
+        // myMap.get(key)
+
+        let obj = {a:1}
+        let arr = [1]
+        let arr2 = [1]
+        let map = new Map()       //在Map中,只有引用同一个对象,才是为同一个键
+        .set(obj,'xixixi')
+        console.log(map.get(obj))    //xixixi
+        console.log(map.get({a:1}))    //undefined   obj和{a:1}内存地址不一样，所以找不到{a:1}
+
+        // arr和arr2虽然看似相同，但是指向的指针并不同，所以Map中也是区分他们不为同一个键
+        map.set(arr,1111)
+            .set(arr2,2222)
+        console.log(map.get(arr))     //  1111
+        console.log(map.get(arr2))    //  2222
+
+        // 若是同一个键被赋值了多次，后面的会覆盖之前的值
+        map.set(arr,'重新赋值')
+        console.log(map.get(arr))
+
+        // Map对象将 -0 0 +0 视为同一个值
+        map.set(-0,'0相等')
+        console.log(map.get(0))
+        console.log(map.get(+0))
+
+        // Map视NaN相等
+        map.set(NaN,'相等')
+        console.log(map.get(Number('xixixi')))    // '相等'
+
+        // 布尔值true 和 'true' 是两个不同的键，undefined 和 null 也是两个不同的键
+        map.set(true,111)
+        map.set('true',222)
+        map.set(undefined,333)
+        map.set(null,444)
+        console.log(map.get(undefined))   // 333
+        console.log(map.get(true))       // 111
+
+        // map.has()
+        // 返回一个布尔值，用来表示map中是否存在指定元素
+
+        console.log(map.has(arr))    // true
+        console.log(map.has([1]))    // false
+
+        // map.delete()
+        // 移除Map对象中的指定元素  存在则删除并返回 true 没有则返回 false
+        map.delete(arr)
+        console.log(map.has(arr))     //false
+        console.log(map.delete([1]))    //false
+
+        // Map.clear()
+        console.log(map.size)
+        map.clear()
+        console.log(map.size)
+
+        // Map.keys() 
+        // 返回键名的遍历器
+        var NewMap = new Map()
+            .set('aa',11)
+            .set('bb',22)
+        for(let key of NewMap.keys()){
+            console.log(key)
+        }
+
+        // Map.values()
+        // 返回键值的遍历器
+        for(let value of NewMap.values()){
+            console.log(value)
+        }
+
+        // Map.entries()
+        // 返回所有成员的遍历器
+        for(let item of NewMap.entries()){
+            console.log(item)    // ['aa',11]   ['bb',22]
+        }
+
+        for(let [key,value] of NewMap.entries()){
+            console.log(`key:${key},value:${value}`)  // key:aa,value:11   key:bb,value:22   
+        }
+
+        for(let [key,value] of NewMap){
+            console.log(`key:${key},value:${value}`)  // key:aa,value:11   key:bb,value:22   
+        }
+
+        // Map.forEach()
+        // Map.forEach(callback(value,key,map))
+        // callback:和Set类似,有三个参数,第一个为键值,第二个为键名,第三个为Map
+
+        var NewMapTwo = new Map()
+            .set('aa',11)
+            .set('bb',22)
+        NewMapTwo.forEach((value,key,NewMapTwo)=>{
+            console.log(value,key,NewMapTwo)      
+            // 11  'aa' {'aa'=>11,'bb'=>22} 
+            // 22  'bb' {'aa'=>11,'bb'=>22}
+        })
+
+        // Map转数组
+        var NewMapThree = new Map()
+            .set('aa',11)
+            .set('bb',22)
+            .set('cc',33)
+        console.log(Array.from(NewMapThree))
+        console.log(Array.from(NewMapThree.keys()))
+        console.log(Array.from(NewMapThree.values()))
+
+        //数组转Map
+        let NewMapFour = new Map([
+            ['age',24],
+            ['name','bh']
+        ])
+
+        // Map和对象
+        // map转对象(map中所有的键是字符串,可以转对象)
+        function mapTpObj(myMap){
+            let obj = Object.create(null)
+            for(let [key,value] of myMap){{
+                obj[key] = value
+            }}
+
+            return obj
+        }
+        // 对象转map
+        function objToMap(obj){
+            let map = new Map()
+            for(let k in obj){
+                map.set(k,obj[k])
+            }
+            return map
+        }
+
+    </script>
+</body>
+</html>

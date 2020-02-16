@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    /*
+
+        var a = '吴昊'
+        // console.log(window.a)   // 输出 a
+        // window 代表全局  我们用 go 表示  a 就是自由变量
+        function bin() {
+            console.log(this)   // 这里输出的是window
+            console.log(this.a)   // 输出 a 
+            console.log(a)     // 输出 a
+        }
+        //  bin 函数声明的时候就出现了全局  所以说可以访问全局的a 这就构成了闭包
+        //  闭包 = 函数 + 函数能够访问的自由变量  window里面的 a
+        bin()
+
+    */
+
+
+
+    /* 
+        在全局window下声明了一个自由变量scope
+        bin函数
+        还有一个a变量
+        赋值：
+            自由变量 scope = '学校'
+            bin函数里面有一个变量scope，一个f函数，并且把 f 函数返回出去，scope 执行后被全局下的a拿到了scope的的返回值f函数、
+            f函数可以访问到bin函数里面的scope、
+            a相当于f函数  a执行就是打印出bin函数里面的scope
+    */
+    var scope = '学校'
+    function bin() {
+        var scope = '班级'   // 如若在这儿隐藏掉，则会往上找到 '学校'  一层一层往上走
+        function f(){
+            console.log(scope)
+        }
+        return f()
+    }
+    var a = bin()
+    a()
+
+/*
+    // 题
+    var arr = []
+    for(var i = 0;i < 3;i++){
+        // function 函数里面要打印出i，它自己没有申明i，它就在全局找i   全局i为3
+        arr[i] = function(){
+            console.log(i)
+        }
+    }
+    //  因为 i变量 最后变成了3
+    arr[0]()   // 3
+    arr[1]()   // 3
+    arr[2]()   // 3
+*/
+
+    //函数里面可以传入参数arguments
+    var arr2 = []
+    for(var i = 0;i < 3;i++){
+        arr2[i] = (function(i){
+            return function() {
+                console.log(i)
+            }
+        })(i)
+    }
+    arr2[0]()   // 3
+    arr2[1]()   // 3
+    arr2[2]()   // 3
+</script>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    function Ani(type,name) {
+        this.type = type
+        this.name = name
+    }
+    function Cat() {
+        Ani.call(this,'动物','猪')  
+        // Ani.apply(this,['动物','猪'])
+        this.color = "red"
+    }
+    var cat1 = new Cat();
+    console.log(cat1.color)
+    console.log(cat1.type)
+    console.log(cat1.name)
+</script>
+</html>

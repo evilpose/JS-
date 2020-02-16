@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 函数作用域
+    /*
+        调用函数时创建函数作用域， 函数执行完毕之后，函数作用域销毁
+        每调用一次函数就会创建一个新的函数作用域，他们之间是互相独立的
+        在函数作用域中可以访问到全局作用域的变量,在全局作用域中无法访问到函数作用域的变量
+        当函数作用域的操作一个变量时，它会先在自身作用域中寻找，如果有，就直接使用，如果没有则向上一级作用域中寻找
+        如果全局作用域没有找到就会报错
+        在函数中，要访问全局的变量，可以使用window对象
+    */
+
+    //创建一个变量
+    var a = 10;
+
+
+    function fun(){
+        var a = '我是fun函数中的变量a'
+        var b = 20
+        console.log('a = '+ a)
+
+        function fun2(){
+            // 当函数作用域的操作一个变量时，它会先在自身作用域中寻找，如果有，就直接使用，如果没有则向上一级作用域中寻找
+            console.log('a = ' + a)
+            // 输出全局的 a
+            console.log('全局的a为' + window.a)
+        }
+
+        fun2()
+    }
+
+    // fun()
+    // console.log('b = ' + b)  //b is not defined
+
+
+    /*
+        在函数作用域中也有声明提前的特性
+        使用var关键字声明的变量，会在函数中所有的代码执行之前被声明
+        函数声明也会在函数中所有代码执行之前执行
+    */
+
+    function fun3(){
+
+        // console.log(a)   // 倘若有下面的 var a = 35 则为undefined  没有则为10
+        fun4()
+        var a = 35
+
+        /*
+            上面的就相当于如下，所以为 undefined
+            var a 
+            console.log(a)
+            a = 35
+        */
+
+        function fun4() {
+            alert('我是fun4')
+        }
+    }
+
+    // fun3()
+
+    var c = 33
+    // 在函数中，不使用 var 声明的变量都会成为全局变量
+    function fun5(){
+        console.log('c = ' + c)  // 输出33  因为下面没有var就没有提前的声明 var c  所以不是undefined
+        c = 10
+        // d 没有使用 var关键字  则会设置为全局变量
+        d = 100   // 其实就是相当于 window.d
+    }
+    // fun5()
+    // console.log('全局 c = ' + c)   // 输出 10  
+    // console.log('全局 d = ' + d)   // 输出 100
+
+
+    var e = 23
+    
+    // 定于形参就相当于在函数作用域中声明了变量
+    function fun6(e){
+        //就相当于这里有一个  var e
+        alert(e)
+    }
+
+    fun6()   //输出undefined
+    fun6(20)  // 输出20
+</script>
+</html>

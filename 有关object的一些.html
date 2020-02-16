@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //  1  object.keys
+        //  参数：要返回其枚举自身属性的对象
+
+        //  返回值：一个表示给定对象的所有可枚举属性的字符串数组
+        let person = {
+            name: '张三',
+            age: 25,
+            address: '深圳',
+            getName: function(){
+
+            }
+        } 
+        console.log(Object.keys(person))   //  ["name", "age", "address", "getName"]  处理对象，返回可枚举的属性数组
+
+        let person2 = [1,2,3,4,5]
+        console.log(Object.keys(person2))   // ["0", "1", "2", "3", "4"]  处理数组，返回索引值数组
+
+        let person3 = '我是字符串嗷嗷啊'
+        console.log(Object.keys(person3))   // ["0", "1", "2", "3", "4", "5", "6", "7"]  处理字符串，返回索引值数组
+
+        // 常用技巧
+        Object.keys(person).map((key)=>{
+        　　console.log(person[key]) // 获取到属性对应的值，做一些处理
+        })
+
+        //  2 object.value   
+        //    object.value 着重于值  ，而object.keys 着重于索引
+
+        var obj = {
+            name: '张三',
+            age: 25,
+            address: '深圳',
+            getName: function(){
+
+            }
+        };
+        console.log(Object.values(obj));
+
+
+        //  3 Object.entries()
+        //    Object.entries() 可以把一个对象的键值以数组的形式遍历出来，结果和 for...in 一致，但不会遍历原型属性。
+
+        const obj2 = { foo: 'bar', baz: 'abc' }; 
+        console.log(Object.entries(obj2));  // [['foo', 'bar'], ['baz', 'abc']]
+
+        const arr = [1, 2, 3]; 
+        console.log(Object.entries(arr));  // [['0', 1], ['1', '2'], ['2', '3']]
+
+
+        // 4  Object.assign 
+        //    将源对象的属性或方法复制到目标对象上面。
+        //    方法里面的第一个参数为目标对象，后面的为源对象。如果两种对象存在同名属性，后面的会覆盖掉前面的。如果不写源对象，则只返回目标对象。
+        // 该方法是浅复制，也就是说，如果源对象的某个属性的值是对象，那么目标对象复制得到的是这个对象的引用。
+        // 也就像是一个指针，指向该属性值所在的位置，所以里面的值变化，得到的也会变化。
+
+        let ta = {a:1}
+        let s1 = {b:2,name:'',}
+        Object.assign(ta,s1)
+        console.log(ta)
+
+
+        // 5 Object.defineProperty
+        //   Object.defineProperty()的作用就是直接在一个对象上定义一个新属性，或者修改一个已经存在的属性
+        let Person = {}
+        let temp = '我在'
+        Object.defineProperty(Person, 'name', {
+            get: function () {
+                console.log('我被人看了')
+                return temp
+            },
+            set: function (val) {
+                console.log('我被改了')
+                temp = val
+            }
+        })
+        console.log(Person)
+
+        let Person7 = {}
+        Object.defineProperty(Person7,'name',{
+            value:'Jack',
+            writable: true,    // 是否可以改变  默认为false
+            enumerable:true   // 描述属性是否会出现在for in 或者 Object.keys()的遍历中
+        })
+
+        // 6  Object.getPrototypeOf() 方法
+        //    用于获取指定对象的原型对象（也就是__protp__的指向）
+        function Obj() {
+            this.name = 'ViavaCos';
+        }
+        Obj.prototype.fullName = '尼古拉斯·赵四';
+        console.log(Object.getPrototypeOf(Obj) === Obj.__proto__ ); // true  
+    </script>
+</body>
+</html>

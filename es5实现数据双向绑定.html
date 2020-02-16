@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" bh-model="msg">
+        <input type="text" bh-model="name">
+        {{msg}}
+        {{name}}
+        <div>嘟嘟嘟嘟</div>
+        <div>{{name}}</div>
+    </div>
+    <script>
+        let obj = {msg:new ViewModel('欢迎你'),name:new ViewModel('布贺')}
+        function ViewModel(data){
+            this.data = data   // this.data 代表的是当前的值
+            this.nodes = []     // 放节点的盒子
+        }
+        ViewModel.prototype.bindNode = function (node){   //这里要做的是将节点和数据绑定到一起
+            this.nodes.push(node)
+            console.log(this.nodes)
+        }
+        ViewModel.prototype.getVal = function(){
+            return this.data
+        }
+        ViewModel.prototype.update = function(){  // 更新方法 可以将将节点依次渲染成我们想要的结果
+            this.nodes.forEach(node=>{
+                console.dir(node)
+                if(node.nodeType === 1){
+                    node.value = this.data
+                }else{   //  {{name}} {{msg}}
+                    node.textContent = node.my.replace(/\{\{([^}]*)\}\}/g,function(){
+                        return obj[arguments[1]].data
+                    }) 
+                }
+            })
+        }
+        ViewModel.prototype.setVal = function(newVal){
+            if(newVal !== this.data){  // 如果设置值和老值相同
+                this.data = newVal
+                this.update()
+            }
+        }
+        // 将数据和节点挂载到一起
+        function compile(el){
+            let ele = document.querySelector(el)   // querySelector 和  document.getElmentById 不同是前者获取的是静态的，后者获取的是动态的
+            //我们不要直接操作节点，可能会导致页面的回流
+            //当render tree中的一部分(或全部)因为元素的规模尺寸，布局，隐藏等改变而需要重新构建。这就称为回流。每个页面至少需要一次回流，就是在页面第一次加载的时候。
+            let fragment = document.createDocumentFragment()   // 文档碎片
+             //取 ele 下的第一个元素，直到取完所有的元素，并且将内容放到文档碎片中
+            let child;
+            while(child = ele.firstChild){
+               fragment.appendChild(child)
+            }
+            function replace(fragment){   // 用来判断是否由我们想要的标签
+                // fragment 是一个类数组  Array.from() 转为正常的数组
+                //  Array.from(fragment)
+                Array.from(fragment.childNodes).forEach(node=>{
+                // 判断node节点是标签还是文本
+                // console.log(node)
+                if(node.nodeType === 1){    // 元素节点
+                    Array.from(node.attributes).forEach(attr=>{    // node.attributes取到节点上的所有属性  nodeList
+                        // console.dir(attr)
+                        let {name,value} = attr
+                        if(name.includes('bh-')){
+                            // console.log(node)
+                            obj[value].bindNode(node)   //输入框
+                            node.addEventListener('input',function(e){
+                                obj[value].setVal(e.target.value)
+                            })
+                        }
+                    })  //取到节点上的所有属性
+                }
+                let reg = /\{\{([^}]*)\}\}/g   //  判断当前有没有{{}}的元素
+                let text = node.textContent
+                if(node.nodeType === 3 && reg.test(text)){    // 文本节点  '{{name}} {{msg}}'
+                    // console.log(node)
+                    // 自定义属性 保留原有的内容
+                    node.my = text
+                    text.replace(reg,function(){
+                        obj[arguments[1]].bindNode(node)
+                    })
+                }
+                if(node.childNodes.length){
+                    replace(node)   //如果有嵌套关系，就会实现继续查找
+                }
+                })
+            }
+            replace(fragment)  //编译后要调用 updata
+            Object.keys(obj).forEach(key=>{  //{msg:new ViewModel(),name} => [msg,name]
+                console.log(obj[key])
+                obj[key].update()
+            })
+             //这里干些事是不会导致页面回流的
+            ele.appendChild(fragment)
+        }
+        compile('#app')
+    </script>
+</body>
+</html>

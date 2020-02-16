@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //  for..of
+        //  for of 用来创建一个循环来迭代可迭代的对象，在ES6中引入的for of循环，以替代for..in  和foreach()
+        //  并支持心的迭代协议，for of允许你遍历Arrays(数组)，String（字符串），Maps（映射），Sets（集合）等可迭代的数据结构等
+
+        // Array
+        // const Array = ['11','22','33','44']
+        // for(const value of Array){
+        //     console.log(value)               // 其结果就是打印出数组的每一个值 
+        // }
+
+        // String
+        // const String = 'javascript'
+        // for(const value of String){
+        //     console.log(value)                 // 其结果就是打印出javascript的每一个字母
+        // }
+
+        // 普通对象不可迭代
+        // const obj = { fname :'foo',lname:'bar'}
+        // for(const value of obj){
+        //     console.log(value)                 // 其结果肯定是错误的 obj is not iterable
+        // }
+
+        // 我们可以通过将类数组（array-like)对象转换为数组来绕过它，该对象具有一个 length 属性，其元素必须可以被索引
+        const obj2 = {0: 'foo', 1: 'bar', 2: 'baz','length': 3};
+        const ArrayObj = Array.from(obj2)
+        console.log(ArrayObj)
+
+        //  Map(映射) 
+        // Map对象就是保存 key-value （键值）对。对象和原始值可以用作key（键）或 value（值）。Map对象根据其插入的方
+        // 法迭代元素。换句话说，for of循环将为再次迭代返回一个 key-value （键值）数组
+        const iterable = new Map([['one',1],['two',2]])
+        for(const [key,value] of iterable){
+            console.log(`Key:${key} and Value:${value}`)
+        }
+
+        // Set(集合)
+        // Set(集合)对象允许你存储任何类型的唯一值，这些值可以说原始值或对象。Set(集合)对象只是值的集合
+        // Set(集合)元素的迭代基于其插入顺序，Set(集合)中的值只能发生一次，如果您创建一个具有多个相同元素
+        // 的Set集合，那么它仍被认为是单个元素
+        const NewSet = new Set([1,2,2,2,3,4,4,5,6])
+        // var StartTime = new Date()
+        console.time("运行时间");
+        for(const value of NewSet){
+            console.log(value)
+        }
+        console.timeEnd("运行时间");
+
+
+        // 退出迭代
+        // js 提供了四种已知的终止循环执行的方法: break continue return 和 throw
+        // 但是好像只有 break 能用
+        const iterable2 = ['mm','nn','oo']
+        for(const value of iterable2){
+            console.log(value)
+            break
+        }
+    </script>
+</body>
+</html>
