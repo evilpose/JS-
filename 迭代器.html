@@ -29,6 +29,12 @@
         //     console.log(value)                 // 其结果肯定是错误的 obj is not iterable
         // }
 
+        // 对象可以用for in 进行迭代
+        // const obj = { fname:'foo',lname:'bar'}
+        // for(const k in obj){
+        //     console.log(obj[k])    //  foo bar
+        // }
+
         // 我们可以通过将类数组（array-like)对象转换为数组来绕过它，该对象具有一个 length 属性，其元素必须可以被索引
         const obj2 = {0: 'foo', 1: 'bar', 2: 'baz','length': 3};
         const ArrayObj = Array.from(obj2)

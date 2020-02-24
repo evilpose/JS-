@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // includes()方法
+        // includes(searchElement)
+        // includes(searchElement,fromIndex)
+        // searchElment  必须的  需要查找的元素值
+        // fromIndex     可选，从该索引处开始查找serachElement ，如果为负值，则按照升序从 array.length + fromIndex 的索引开始搜索，默认为0
+        console.log([1,2,3,4].includes(2))         // true
+        console.log([1,2,3,4].includes(5))         // false
+        console.log([1,2,3,4].includes(3,3))       // false
+        console.log([1,2,3,4].includes(4,-1))      // true
+        console.log([1,2,NaN].includes(NaN))       // true
+
+        // concat()方法
+        // 用于连接两个数组，该方法不会改变现有的数组，而仅仅会返回被连接数组的一个副本
+        /* let a = [1,2,3]
+        console.log(a.concat(4,5))
+        let b = [6,7]
+        console.log(a.concat(b))
+        let c = [8,9]
+        console.log(a.concat(b,c)) */
+    </script>
+</body>
+</html>
