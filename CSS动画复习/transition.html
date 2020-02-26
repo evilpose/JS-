@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            transition: all 4s ease 2s;
+        }
+        #box:hover{
+            width: 800px;
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+    <script>
+        /* 
+            transition动画
+            transition：transition-property transtion-duration transition-timing-function transition-delay
+            transition-property : 规定设置过渡效果的CSS属性的名称  默认为null
+            transition-duration : 规定完成过渡效果需要多少秒或者毫秒  默认为0
+            transition-timing-function : 规定速度效果的速度曲线 默认为linear
+            transition-delay : 定义过渡效果何时开始
+
+            transition-property:none (没有) | all (所有的属性)| property (指定一个属性)
+            例子： 
+                div{transition-property:width;width:100px}
+                div:hover{width:200px;}
+
+            transition-duration : ns | ms  (秒 毫秒)
+            例子：
+                div{transition-property:width;width:100px;transition-duration:1s}
+                div:hover{width:200px;}
+
+            transition-timing-function:linear | ease(由快及慢，但是开始也有一点缓冲) | ease-in(开始慢 后面正常) | ease-out(开始正常 结束慢) | ease-in-out | cubic-bezier(n,n,n,n)
+            steps(n,x)    n为步骤的数量  x为这个值是否占一帧
+            linear  是一种线性的改变
+            后面的那些都是一种缓冲渐变
+            cubic-bezier(n,n,n,n) 是调节四个值来实现速度的一个变化
+
+            transition-delay: ns | ms (秒，毫秒)
+            延迟设置的时间后动画再开始
+         */
+    </script>
+</body>
+</html>
