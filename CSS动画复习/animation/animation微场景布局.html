@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        body{
+            width: 100vw;
+            height: 100vh;
+            background-color: #6d98c4;
+            display: grid;
+            grid-template-rows: 10vh 1fr 10vh;
+        }
+        header{
+            background-color: #e67e22;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2em;
+            color: white;
+            animation-name: translate;
+            animation-duration: 1s;
+        }
+        main{
+            background: url("./test.png") no-repeat;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            animation-fill-mode: backwards;
+            animation-name: rotate;
+            animation-duration: 1s;
+            animation-delay: 2s;
+        }
+        footer{
+            background-color: #34495e;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2em;
+            color: white;
+            /* transform: scale(0); */
+            animation-fill-mode: backwards; /* 在 animation-delay 所指定的一段时间内，在动画显示之前，应用开始属性值（在第一个关键帧中定义） */
+            animation-name: rotate;
+            animation-duration: 1s;
+            animation-delay: 1s;
+        }
+        div{
+            width: 80vw;
+            border-radius: 10px;
+            padding: 10px;
+            color: white;
+            opacity: .8;
+            box-shadow: 0 0 10px rgba(0, 0, 0, .8);
+        }
+        div:nth-child(1){
+            transform: translateY(-50px);
+            background-color: #8e44ad;
+            /* animation-name: opacity;
+            animation-duration: 1s;
+            animation-delay: 3s;
+            animation-fill-mode: backwards; */
+        }
+        div:nth-child(2){
+            background-color: #793f38;
+            
+        }
+        .opacity{
+            animation-name: opacity;
+            animation-duration: 1s;
+            animation-fill-mode: backwards;
+        }
+        .s3{
+            animation-delay: 3.5s;
+        }
+        @keyframes translate {
+            from{
+                transform: translateX(-100vw);
+            }
+            tO{
+                transform: translateX(0);
+            }
+        }
+        @keyframes rotate {
+            from{
+                transform: scale(0) rotate(360deg)
+            }
+            tO{
+                transform: scale(1) rotate(0deg)
+            }
+        }
+        @keyframes opacity {
+            from{
+                opacity:0
+            }
+            tO{
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>头</header>
+    <main>
+        <div>
+            I do,but it still does not cover everything.
+            我有，但是它仍然没有覆盖所有的费用。
+            Yes.It will cover all the expenses with our voucher.
+            是的。它将涵盖所有费用与我们的凭单。
+        </div>
+        <div class="opacity s3">      <!-- 可以配合js进行class名字的增删来达到控制动画的效果 -->
+            I do,but it still does not cover everything.
+            我有，但是它仍然没有覆盖所有的费用。
+            Yes.It will cover all the expenses with our voucher.
+            是的。它将涵盖所有费用与我们的凭单。
+            Why go to all of that work and then cover it up?
+            为什么要做这么多工作而又把他们覆盖掉呢？
+            What do they want it to cover?
+            他们希望这份报告包括些什么？
+        </div>
+    </main>
+    <footer>脚丫子</footer>
+</body>
+</html>

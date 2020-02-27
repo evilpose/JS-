@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        body{
+            width: 100vw;
+            height: 100vh;
+            background-color: #2c3e50;
+            display: grid;
+        }
+        main{
+            width: 400px;
+            height: 200px;
+            align-self: center;
+            justify-self: center;
+            overflow: hidden;
+            position: relative;
+        }
+        section{
+            width: 1600px;
+            height: 200px;
+            display: grid;
+            grid-template: 1fr/repeat(4,400px);
+            animation-name: slide;
+            animation-duration: 4s;
+            animation-timing-function: steps(4,end);
+            animation-iteration-count: infinite;
+        }
+        div{
+            overflow: hidden;
+        }
+        img{
+            width: 100%;
+        }
+        @keyframes slide {
+            to{
+                transform: translateX(-1600px);
+            }
+        }
+        @keyframes num {
+            to{
+                transform: translateX(200px);
+            }
+        }
+        section:hover,
+        section:hover + ul::after{
+            animation-play-state: paused;
+        }
+        ul{
+            position: absolute;
+            left: 50%;
+            bottom: 10%;
+            transform: translateX(-50%);
+            display: grid;
+            grid-template: 1fr/repeat(4,1fr);
+            list-style: none;
+            width: 200px;
+            justify-items: center;
+        }
+        ul::after{
+            content: '';
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #e74c3c;
+            position: absolute;
+            left: 10px;
+            top: 0;
+            z-index: -1;
+            animation-name: num;
+            animation-duration: 4s;
+            animation-timing-function: steps(4,end);
+            animation-iteration-count: infinite;
+        }
+        li{
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, .3);
+            display: grid;
+            justify-items: center;
+            align-items: center;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <section>
+            <div><img src="../Img/Sea.jpg" alt=""></div>
+            <div><img src="../Img/Sky.jpg" alt=""></div>
+            <div><img src="../Img/cat.jpg" alt=""></div>
+            <div><img src="../Img/dag.jpg" alt=""></div>
+        </section>
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+    </main>
+</body>
+</html>

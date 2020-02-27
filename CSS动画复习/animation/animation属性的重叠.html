@@ -28,7 +28,8 @@
             height: 100px;
             background-color: #f1c40f;
             animation-name: bh,background,radius;   /* 如果这儿动作有三个，但是下面的时间规定有两个，那么最后那个动作会使用第一个时间 */
-            animation-duration: 5s,2.5s,5s;
+            animation-duration: 4s;
+            animation-iteration-count: infinite,1,1;      /* 这个次数依次对应animation-name中的动画，如果这个数量少，那么多余的动作再按照第一个去计算 */
         }
 
         @keyframes bh{

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        body{
+            width: 100vw;
+            height: 100vh;
+            background-color: #34495e;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .heart{
+            width: 200px;
+            height: 200px;
+            background-color: #e74c3c;
+            transform: rotate(45deg) scale(0.5);
+            opacity: 0.5;
+            animation-name:run;
+            animation-duration:2s;
+            animation-iteration-count:infinite ;
+        }
+        .heart::before{
+            content: '';
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            position: absolute;
+            background-color: #e74c3c;
+            transform: translateX(-100px);
+        }
+        .heart::after{
+            content: '';
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            position: absolute;
+            background-color: #e74c3c;
+            transform: translateY(-100px);
+        }
+        @keyframes run{
+            50%{
+                transform:rotate(45deg) scale(1);
+                opacity: 1
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="heart"></div>
+</body>
+</html>

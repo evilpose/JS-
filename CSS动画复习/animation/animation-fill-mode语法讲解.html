@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        body{
+            width: 100vw;
+            height: 100vh;
+            background-color: #2c3e50;
+            display: grid;
+        }
+        ul{
+            list-style: none;
+            width: 400px;
+            height: 100px;
+            align-self: center;
+            justify-self: center;
+            display: grid;
+            grid-template: 1fr/repeat(4,1fr);
+        }
+        li{
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: #e67e22;
+            animation-duration: 2s;
+            animation-delay: 2s;
+            display: grid;
+            align-items: center;
+            justify-items: center;
+        }
+        /*  animation 这么一大堆都可以简写 
+            animation:name  动画时间 其他的属性 延迟时间（后面的时间是延迟时间）q
+        */
+        li:nth-child(1){
+            animation-name: bh;
+        }
+        li:nth-child(2){
+            animation-name: bh;
+            animation-fill-mode: backwards;     /* 延迟的过程种它的状态是属于第一帧的 */
+
+        }
+        li:nth-child(3){
+            animation-name: bh;
+            animation-fill-mode: forwards;      /* 动画结束之后变成动画的最后一帧 */
+        }
+        li:nth-child(4){
+            animation: bh both 2s 2s;
+            /* 
+                animation-name: bh;
+                animation-fill-mode: both;       兼顾上面的两个效果 
+            */
+        }
+        @keyframes bh {
+            from{
+                transform: scale(0);
+            }
+            to{
+                transform: scale(1);
+                background-color: #2ecc71;
+            }
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>normal</li>
+        <li>backwards</li>
+        <li>forwards</li>
+        <li>both</li>
+    </ul>
+</body>
+</html>

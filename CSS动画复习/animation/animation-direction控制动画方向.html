@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        body{
+            width: 100vw;
+            height: 100vh;
+            background-color: #34495e;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        ul{ 
+            list-style: none;
+            width: 400px;
+            height: 100px;
+            display: flex;
+        }
+        li{
+            flex: 1;
+            color: #e74c3c;
+            /* border: solid 1px #ddd; */
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+        i.fa {
+            font-size: 3em;
+            animation-name: bh;
+            animation-duration: 2s;
+            animation-iteration-count: infinite;
+            position: absolute;
+        }
+        /* li:nth-child(1) > i{
+            animation-direction: normal;
+        } */
+        /* li:nth-child(2) > i{
+            animation-direction: reverse;
+        } */
+        /* li:nth-child(3) > i{
+            animation-direction: alternate;
+        } */
+        li:nth-child(4) > i{
+            animation-direction: alternate-reverse;
+        }
+        span{
+            position: absolute;
+            bottom: 0;
+        }
+        @keyframes bh{
+            to{
+                transform: scale(3);
+            }
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>
+            <i class="fa fa-heart" aria-hidden="true">大</i>
+            <span>normal</span>
+        </li>
+        <li>
+            <i class="fa fa-heart" aria-hidden="true">大</i>
+            <span>reverse</span>
+        </li>
+        <li>
+            <i class="fa fa-heart" aria-hidden="true">大</i>
+            <span>alternate</span>
+        </li>
+        <li>
+            <i class="fa fa-heart" aria-hidden="true">大</i>
+            <span>alternate</span>
+        </li>
+    </ul>
+</body>
+</html>
