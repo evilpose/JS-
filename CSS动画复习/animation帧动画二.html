@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        body{
+            width: 100vw;
+            height: 100vh;
+            background-color: #34495e;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        main{
+            width: 400px;
+            height: 400px;
+            border: solid 1px #ddd;
+        }
+
+        div{
+            width: 100px;
+            height: 100px;
+            background-color: #f1c40f;
+            animation-name: bh,background,radius;   /* 如果这儿动作有三个，但是下面的时间规定有两个，那么最后那个动作会使用第一个时间 */
+            animation-duration: 5s,2.5s;
+        }
+
+        @keyframes bh{
+            25%{
+                transform: translateX(300px);
+            }
+            50%{
+                transform: translate(300px,300px);
+            }
+            70%{
+                transform: translateY(300px);
+            }
+        }
+        @keyframes background{
+            25%{
+                background-color: silver;
+            }
+            50%{
+                background-color: #f1c40f;
+            }
+            70%{
+                background-color: silver;
+            }
+        }
+        @keyframes radius{
+            25%{
+                border-radius: 50%;
+            }
+            50%{
+                border-radius: 0;
+            }
+            70%{
+                border-radius: 50%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div></div>
+    </main>
+</body>
+</html>

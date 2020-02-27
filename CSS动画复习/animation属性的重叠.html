@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        body{
+            width: 100vw;
+            height: 100vh;
+            background-color: #34495e;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        main{
+            width: 400px;
+            height: 400px;
+            border: solid 1px #ddd;
+        }
+
+        div{
+            width: 100px;
+            height: 100px;
+            background-color: #f1c40f;
+            animation-name: bh,background,radius;   /* 如果这儿动作有三个，但是下面的时间规定有两个，那么最后那个动作会使用第一个时间 */
+            animation-duration: 5s,2.5s,5s;
+        }
+
+        @keyframes bh{
+            25%{
+                transform: translateX(300px);
+            }
+            50%{
+                transform: translate(300px,300px);
+            }
+            70%{
+                transform: translateY(300px);
+            }
+        }
+        @keyframes background{
+            25%{
+                background-color: silver;
+                /* transform: translateX(300px);  */
+                /* 这儿和bh的属性重叠，在animation-name中后出现的动作权重比较高，先执行，在例子中就是
+                    先执行2.5s的background的颜色以及完整的位移变化，然后剩下的时间再交给bh动作去完成 */
+            }
+            50%{
+                background-color: #f1c40f;
+            }
+            70%{
+                background-color: silver;
+            }
+        }
+        @keyframes radius{
+            from,to{
+                background-color: red;     /* 开始和结束都这样，只不过结束之后再变回原来的颜色 */
+            }
+            25%{
+                border-radius: 50%;
+            }
+            50%{
+                border-radius: 0;
+            }
+            70%{
+                border-radius: 50%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div></div>
+    </main>
+</body>
+</html>
