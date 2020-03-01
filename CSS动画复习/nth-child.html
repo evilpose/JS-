@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .bh :nth-child(6) :last-child{
+            background-color: aqua;
+        }
+        .ss :first-child{
+            background-color: blueviolet;
+        }
+        .sh :first-child span{
+            background-color: red;
+        }
+        [id]{
+            background-color: rgb(51, 97, 74);
+        }
+        [type ~= dd]{
+            background-color: black;
+        }
+        /* [type |= button]{
+            background-color: yellow;
+        } */
+    </style>
+</head>
+<body>
+    <div class="bh">
+        <span id="">第一</span>
+        <span>第二</span>
+        <span>第三</span>
+        <span>第四</span>
+        <span>第五</span>
+        <div style="width:100px;height:60px;">
+            <span>第一</span>
+            <span>第二</span>
+            <span>第三</span>
+            <span>第四</span>
+            <span>第五</span>
+        </div>
+    </div>
+    <div class="ss">
+        <span>第七</span>
+        <span id="">第八</span>
+        <span>第九</span>
+        <span>第十</span>
+    </div>
+    <div class="sh">
+        <div>
+            <li id="">4</li>
+            <li>4</li>
+            <li>4</li>
+            <span>哈哈哈</span>
+            <li>4</li>
+            <li>4</li>
+        </div>
+        <span>第八</span>
+        <span>第九</span>
+        <span>第十</span>
+    </div>
+    <input type="text dd" name="">
+    <input type="button dd" name="">
+</body>
+</html>
