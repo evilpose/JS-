@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // sort
+        // 对于数组元素进行排序
+        // 如果调用该方法时没有使用参数，将按字母顺序对数组中的元素进行排序，说得更精确点，是按照字符编码的顺序进行排序
+        
+        // 1 不传参数
+        var arr = ['General','Tom','Bob','John','Army'];
+		var resArr = arr.sort();
+		console.log(resArr);//输出   ["Army", "Bob", "General", "John", "Tom"]
+		
+		var arr2 = [30,10,111,35,1899,50,45];
+		var resArr2 = arr2.sort();
+		console.log(resArr2);//输出   [10, 111, 1899, 30, 35, 45, 50]
+        
+        // 2 传入参数 实现升序降序
+        var arr3 = [30,10,111,35,188,9234]
+        console.log(arr3.sort((a,b)=>{
+            return a - b
+        }))
+        console.log(arr3.sort((a,b)=>{
+            return b - a
+        }))
+
+        // 3 根据数组中的某个属性值排序
+        var arr5 = [{id:50},{id:55},{id:15},{id:5},{id:150}]
+        console.log(arr5.sort((a,b)=>{
+            return a.id - b.id
+        }))
+        console.log(arr5.sort((a,b)=>{
+            return b.id - a.id
+        }))
+
+        // 4 根据数组中的对象的多个属性值排序，多条件排序
+        var arr6 = [{id:10,age:2},{id:5,age:4},{id:6,age:10},{id:9,age:6},{id:2,age:8},{id:10,age:9}];
+		console.log(arr6.sort((a,b)=>{
+			if(a.id === b.id){//如果id相同，按照age的降序
+				return b.age - a.age
+			}else{
+				return a.id - b.id
+			}
+		})
+        )
+    </script>
+</body>
+</html>

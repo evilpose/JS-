@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function a(name,sex){
+            this.name = name
+            this.sex = sex
+            this.hobby = 'basketball'
+        }
+        a.prototype.con = function(){
+            console.log(`我的兴趣爱好是${this.hobby}`)
+        }
+        a.prototype.log = function(){
+            console.log(`我的兴趣爱好是${this.eat}`)
+        }
+        a.prototype.from = '山东'
+        a.prototype.eat = '吃肉'
+        var b = new a('zs','男')
+        function c(){
+
+        }
+        c.prototype = new a('wu','女')
+        c.constructor = c
+    </script>
+</body>
+</html>
