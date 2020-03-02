@@ -1,0 +1,41 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Object.defineProperty()实现双向数据绑定</title>
+</head>
+<body>
+<div id="app">
+    <input type="text" id="txt">
+    <p id="show"></p>
+</div>
+</body>
+<script>
+    // VUE实现双向数据绑定的原理就是利用了 Object.defineProperty() 这个方法重新定义了对象获取属性值(get)和设置属性值(set)的操作来实现的
+    // 代码演示：defineProperty的双向绑定
+    var obj = {}
+    //第一个参数：定义属性的对象。
+    //第二个参数：要定义或修改的属性的名称。
+    //第三个参数：将被定义或修改的属性描述符。
+    Object.defineProperty(obj, 'txt', {
+        get: function () {
+            return txt
+        },
+        set: function (newVal) {
+            document.getElementById('txt').value = newVal;
+            document.getElementById('show').innerText = newVal;
+        }
+    })
+    document.getElementById('txt').addEventListener('keyup', function (e) {
+        obj.txt = e.target.value
+    })
+    //赋值调用set
+    obj.txt = 'aaa';
+    //取值调用get
+    console.log(obj.txt);
+</script>
+</html>
