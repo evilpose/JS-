@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function test(string){
+            if(string.split('').reverse().join('') === string){
+                return true
+            }else{
+                return false
+            }
+        }
+        console.log(test('abba'))
+        console.log(test('abcba'))
+        console.log(test('abccba'))
+        console.log(test('abcdba'))
+        console.log(test('abadba'))
+    </script>
+</body>
+</html>
