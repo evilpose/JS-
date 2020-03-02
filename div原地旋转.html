@@ -7,11 +7,17 @@
     <title>Document</title>
     <style>
         /* https://developer.mozilla.org/zh-CN/docs/Web/CSS/animation */
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
         .logo {
             width:400px;
             height: 200px;
             background-color: black;
-            -webkit-animation: animal 4s infinite linear alternate;
+            animation: animal 4s infinite linear;
             /* 动画名称 播放时间 延迟时间 播放次数 播放速度 */
             /* -webkit-transform-origin: center center;
             -ms-transform-origin: center center; */
