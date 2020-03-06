@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box{
+            width: 100px;
+            height: 100px;
+            background-color: bisque;
+            border: 10px solid aquamarine;
+        }
+
+        .aa{
+            width: 400px;
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+    <script>
+        /* 以上的三次修改样式不会三次进行dom的操作，只会进行一次，
+        因为浏览器会有渲染队列的机制。会等一下看看下一行是不是还是操作的dom，如果是的话，就会放在渲染队列里面，
+        等也没有了再一起来操作dom */
+        let box = document.getElementById('box')
+        box.style.width = '200px'
+        // 这儿会阻断掉，形成两次了就
+        console.log(box.clientWidth)
+        box.style.height = '200px'
+        box.style.margin = '10px'
+        // 所以分离读写就是把类似于 console.log(box.clientWidth) 的读取操作和操作的代码分开，放到最后就不会阻断了，就只有一次的操作dom了
+
+
+        // 批量处理
+        box.style.cssText = 'width:300px;height:300px'
+
+        // 或者上面写个样式,直接添加类
+        box.className = 'aa'
+
+        // 缓存处理
+        let a = box.clientWidth
+        let b = box.clientHeight
+        box.style.width = a + 10 + 'px'
+        box.style.height = b + 10 + 'px'
+
+    </script>
+</body>
+</html>

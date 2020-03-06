@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box{
+            background-image: url("javascript:alert('xss')");
+        }
+    </style>
+</head>
+
+<body>
+    <ul id="box"></ul>
+    <script>
+        let box = document.getElementById('box')
+        for (let i = 0; i < 5000; i++) {
+            let newLi = document.createElement('li')
+            newLi.innerHTML = i
+            box.appendChild(newLi)
+        }
+        // 引发五次回流
+
+
+        // // 文档碎片
+        // let frg = document.createDocumentFragment();      //创建一个文档碎片的临时容器
+        // for(let i = 0;i < 5000;i++){
+        //     let newLi = document.createElement('li')
+        //     newLi.innerHTML = i
+        //     frg.appendChild(newLi)
+        // }
+        // // 引发一次回流
+        // box.appendChild(frg)
+        // frg = null        //销毁容器
+
+        // 字符串拼接
+        let str = ``
+        for (let i = 0; i < 5; i++) {
+            str += `<li>${i}</li>`
+        }
+        box.innerHTML = str
+
+        box.style.transform = 'translateX(200px)'
+
+    </script>
+</body>
+
+</html>
