@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box1{
+            height: 100px;
+            width: 300px;
+            margin-bottom: 10px;
+            background-color: aquamarine;
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            /* 行间距为20px */
+            /* row-gap: 20px;       */
+            /* 列间距为10px */      
+            /* column-gap: 10px;         */
+            /* gap: <row-gap> <column-gap> */
+            gap: 20px 10px;
+            /* 如果第二个不写，就默认第二个等于第一个 */
+            /* gap: 10px; */
+        }
+        .box2{
+            height: 100px;
+            width: 300px;
+            background-color: rgb(58, 85, 76);
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            grid-template-rows: repeat(3,1fr);
+            /* grid-template-areas:"header header header"
+                                "main main sidebar"
+                                "footer footer footer"; */
+            grid-template-areas:'a . c'
+                                'd . f'
+                                'g . i';
+        }
+        .box2 > span{
+            grid-area: a;
+            background-color: rgb(64, 64, 88);
+        }
+    </style>
+</head>
+<body>
+    <div class="box1">
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+        <span>5</span>
+        <span>6</span>
+        <span>7</span>
+        <span>8</span>
+    </div>
+    <div class="box2">
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+        <span>5</span>
+        <span>6</span>
+        <span>7</span>
+        <span>8</span>
+        <span>9</span>
+    </div>
+</body>
+</html>

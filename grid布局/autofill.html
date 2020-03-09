@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            height: 100px;
+            width: 200px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill,30px);
+        }
+        .box2{
+            height: 100px;
+            width: 200px;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            grid-template-rows: 1fr 2fr;
+        }
+        .box3{
+            height: 100px;
+            width: 200px;
+            display: grid;
+            grid-template-columns: 30px 1fr 2fr;
+        }
+        .box4{
+            height: 100px;
+            width: 200px;
+            display: grid;
+            grid-template-columns: 1fr 1fr minmax(50px, 1fr);
+        }
+        .box5{
+            height: 100px;
+            width: 200px;
+            display: grid;
+            grid-template-columns: 50px auto 50px;
+        }
+        .box6{
+            height: 200px;
+            width: 500px;
+            display: grid;
+            /* grid-template-columns: 70% 30%; */
+            grid-template-columns: repeat(12,1fr);
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+        <div>7</div>
+        <div>8</div>
+    </div>
+    <div class="box2">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+    </div>
+    <div class="box3">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+    </div>
+    <div class="box4">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+    </div>
+    <div class="box5">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+    </div>
+    <div class="box6">
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+        <span>5</span>
+        <span>6</span>
+        <span>7</span>
+        <span>8</span>
+        <span>9</span>
+        <span>10</span>
+        <span>11</span>
+        <span>12</span>
+    </div>
+</body>
+</html>

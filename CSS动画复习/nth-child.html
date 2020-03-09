@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        .bh :nth-child(6) :last-child{
+        .bh :nth-child(6){
             background-color: aqua;
         }
         .ss :first-child{
@@ -23,6 +23,9 @@
         [type |= button]{
             background-color: yellow;
         }
+        .aaa :nth-child(1){
+            height: 10px;
+        }
     </style>
 </head>
 <body>
@@ -38,6 +41,7 @@
             <span>第三</span>
             <span>第四</span>
             <span>第五</span>
+            <span>第六</span>
         </div>
     </div>
     <div class="ss">
@@ -61,5 +65,12 @@
     </div>
     <input type="text dd" name="">
     <input type="button dd" name="">
+    <div class="aaa">
+        <div>
+            <div></div>
+            <div style='background-color:blue'></div>
+        </div>
+        <div></div>
+    </div>
 </body>
 </html>

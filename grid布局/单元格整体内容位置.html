@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box1{
+            height: 200px;
+            width: 400px;
+            background-color: cornflowerblue;
+            display: grid;
+            grid-template-columns: repeat(3,50px);
+            grid-template-rows: repeat(3,50px);
+            /* justify-items: center;
+            align-items: center; */
+            /* place-items 是 align-items 和 justify-items 的缩写 */
+            place-items: center center;
+            /* justify-content: right;
+            align-content: end; */
+            /* place-content 是 justify-content 和 align-content 的缩写 */
+            place-content: center center;
+            /* 
+                start - 对齐容器的起始边框。
+                center - 容器内部居中。
+                end - 对齐容器的结束边框。
+                space-between - 项目与项目的间隔相等，项目与容器边框之间没有间隔。
+                space-around - 每个项目两侧的间隔相等。所以，项目之间的间隔比项目与容器边框的间隔大一倍。
+                space-evenly - 项目与项目的间隔相等，项目与容器边框之间也是同样长度的间隔
+                stretch  - 项目大小没有指定时，拉伸占据整个网格容器。
+             */
+        }
+        .box2{
+            height: 200px;
+            width: 400px;
+            background-color: darkgray;
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            grid-template-rows: repeat(3,1fr);
+            grid-auto-rows: 50px; 
+            /* 
+                grid-auto-columns 属性和 grid-auto-rows 属性用来设置浏览器自动创建的多余的网格和列宽和行高，他们的写法与
+                grid-temlpate-columns 和 grid-template-rows 完全相同，如果不指定这两个属性，浏览器完全根据单元格内容的大小，
+                决定新增的网格的列宽和行高
+             */
+        }
+        .item-8{
+            grid-column-start: 2;
+            grid-column-end: 3;
+            grid-row-start: 4;
+            grid-row-end: 5;
+            background-color: darkgreen;
+        }
+        .item-9{
+            /* grid-column-start: 3;
+            grid-column-end: 4; */
+            /* grid-column: 3 / 4; */
+            /* 也可以写成 grid-column: 3 / span 1; */
+            grid-column: 3 / span 1;
+            /* 斜杠以及后面的部分可以省略，默认跨越一个网格 */
+            /* 
+                grid-column 属性是 grid-column-start 和 grid-column-end 的合并缩写 
+                grid-row 属性是grid-row-start 和 grid-row-end 的合并缩写
+             */
+            grid-row-start: 5;
+            grid-row-end: 6;
+            /* 
+                grid-row:5/6
+                grid-row:5/span 1 
+                grid-row:5
+            */
+            background-color: sandybrown;
+        }
+        .box3{
+            height: 200px;
+            width: 400px;
+            background-color: skyblue;
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            grid-template-rows: repeat(3,1fr);
+        }
+        .b3-item3{
+            /* 
+                grid-column-end:span 2
+                grid-column-end:span 2
+                意思相同就是占据两个格子的大小
+                 */
+            grid-column-start: span 2;
+            grid-row-start: span 2;
+            background-color: tomato;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1">
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+        <span>5</span>
+        <span>6</span>
+        <span>7</span>
+        <span>8</span>
+        <span>9</span>
+    </div>
+    <div class="box2">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+        <div>7</div>
+        <div class="item-8">8</div>
+        <div class="item-9">9</div>
+    </div>
+    <div class="box3">
+        <div>1</div>
+        <div>2</div>
+        <div class="b3-item3">3</div>
+        <div>4</div>
+        <div>5</div>
+    </div>
+</body>
+</html>
