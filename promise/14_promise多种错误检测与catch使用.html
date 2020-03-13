@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        new Promise((resolve,reject)=>{
+            // reject(new Error('promise fail'))
+            // throw new Error('fail')
+            // hd + 1
+            reject('rejeacted')
+            // resolve('fulfilled')
+        }).then(
+            value =>{
+                return new Promise((resolve,reject)=>{
+                    // resolve('success')
+                    reject('p2')
+                })
+            },
+            reason =>{
+                console.log(reason)
+                return new Promise((resolve,reject)=>{
+                    // resolve('success')
+                    reject('p2')
+                })
+            }
+        ).then(
+            value =>{
+                console.log(value)
+            }
+        ).catch(error=>{
+            console.log(error)
+        })
+        // catch放在上面，只接收其上面的错误
+        // 所以推荐把catch放在下面
+    </script>
+</body>
+</html>

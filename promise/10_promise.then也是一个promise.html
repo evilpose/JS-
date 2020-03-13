@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let p1 = new Promise((resolve,reject)=>{
+            resolve('fulfilled')
+        })
+        let p2 = p1.then(
+            value => console.log(value),
+            reason => console.log(reason)
+        ).then(a=>console.log('成功'),b=>console.log(b))
+        // then之后的then是上面的then的一种then
+        console.log(p1)
+        console.log(p2)
+        // setTimeout是一个宏任务，所以运行在微任务之
+        // 后，所以在这能看到微任务运行结束的状态
+        setTimeout(()=>{
+            console.log(p1)
+            console.log(p2)
+        })
+    </script>
+</body>
+</html>
