@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // setTimeout(()=>{
+        //     console.log('setTimeout')
+        // },0)
+        /* 
+            new Promise(resolve=>{
+                resolve()       // 遇到这个就把then加到微任务中
+                console.log('promise')    //然而这个是主任务的正常顺序，会输出promise 你是猪 then
+            }).then(value=>{
+                console.log('then')
+            })
+            console.log('你是猪') 
+        */
+
+        setTimeout(()=>{
+            console.log('setTimeout')
+        },0)                // 这个setTimeout是宏任务
+        new Promise(resolve=>{
+            resolve()       // 遇到这个就把then加到微任务中
+            console.log('promise')    //然而这个是主任务的正常顺序，会输出promise 你是猪 then
+        }).then(value=>{
+            console.log('then')
+        })
+        console.log('你是猪') 
+    </script>
+</body>
+</html>

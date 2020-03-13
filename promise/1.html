@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function LoadImag(src,resolve,reject) {
+            let image = new Image()
+            image.src = src
+            image.onload = ()=>{
+                resolve(image)
+            }
+            image.onerror = reject
+        }
+        LoadImag(
+            '../CSS动画复习/Img/cat.jpg',
+            image =>{
+                document.body.appendChild(image)
+            },
+            ()=>{
+                console.log('加载失败')
+            }
+        )
+        console.log('你是猪')
+    </script>
+</body>
+</html>

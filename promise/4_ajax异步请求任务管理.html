@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+    <script>
+        let site = 'bh.com'
+        $.ajax(`http://rap2.taobao.org:38080/app/mock/244949/job/list`,(user)=>{
+            console.log('Ajax的信息')
+            console.log(site)   // 因为最终是主线程去使用这个ajax的结果，所以主线程的数据在这儿也是能用的
+            $.ajax(`http......${user.id}`,lessons =>{
+                console.log(lessons)
+            })
+        })
+        console.log('我在下面')
+    </script>
+</body>
+</html>

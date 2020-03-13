@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function load(src,resolve){
+            let script = document.createElement('script')
+            script.src = src
+            script.onload = resolve
+            document.body.appendChild(script)
+        }
+        load("js/hd.js",()=>{
+            hd()
+            load("js/hd2.js",()=>{
+                hd()
+            })
+        })
+        // load("js/hd2.js",()=>{
+        //     hd2()
+        // })
+        // 上面注释掉的加载两个js的加载没有队列的特性，谁先加载完谁先放到任务队列里面
+        console.log('你得永远在我的后面')
+    </script>
+</body>
+</html>

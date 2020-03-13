@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // pending      准备阶段
+        // resolved     成功状态
+        // reject       失败状态
+        console.log(
+            new Promise((resolve,reject)=>{
+                resolve('成功状态')
+                // reject('失败状态')
+            }).then(value =>{
+                console.log('成功的业务处理 1')
+            },reason =>{
+                console.log('失败的业务处理 1')
+            }).then(value =>{
+                console.log('成功的业务处理 2')
+            },reason =>{
+                console.log('失败的业务处理 2')
+            })
+        )
+        // 微任务队列和宏任务队列以微任务队列为主
+        // promise 会生产出微任务
+    </script>
+</body>
+</html>

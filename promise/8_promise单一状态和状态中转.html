@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* let p1 = new Promise((resolve,reject)=>{
+            // resolve('成功')
+            // reject('拒绝')
+            setTimeout(()=>{
+                reject('拒绝')
+            },2000)
+        }) */
+        new Promise((resolve,reject)=>{
+            resolve('fulfilled')
+            reject('失败')
+            // resolve(p1)
+            // setTimeout(()=>{
+            //     resolve('fulfilled')
+            // },2000)
+        }).then(
+            msg=>{
+                console.log('success:' + msg)
+            },
+            error=>{
+                console.log('error:' + error)
+            }
+        )
+        console.log('你是猪')
+    </script>
+</body>
+</html>

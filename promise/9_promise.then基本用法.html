@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        new Promise((resolve,reject)=>{
+            // resolve('一瓶可乐')
+            reject('钱不够')
+        })
+        // .then()   // 这儿的then不做处理就继续往后传递
+        .then(null,a =>{
+            console.log(`处理了失败的状态${a}`)
+        })
+        .then(
+            value=>{
+                console.log(value)
+            },
+            reason=>{
+                console.log(reason)
+            }
+        )
+    </script>
+</body>
+</html>
