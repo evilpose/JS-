@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            color: white;
+            /* display: none; */
+        }
+    </style>
+</head>
+<body>
+    <div id="box">loading...</div>
+    <script src="./js/ajax.js"></script>
+    <script>
+        ajax(`http://rap2.taobao.org:38080/app/mock/244950/teacher/list`).then(
+            value =>{
+                console.log(value)
+            }
+        ).finally(()=>{
+            box.style.display = 'none'
+        })
+        // const promise = new Promise((resolve,reject)=>{
+        //     reject('hdmcd')
+        // }).then(
+        //     msg=>{
+        //         console.log('resolve')
+        //     },
+        //     reason=>{
+        //         console.log('reason')
+        //     }
+        // ).finally(()=>{
+        //     console.log('永远都会执行')
+        // })
+    </script>
+</body>
+</html>

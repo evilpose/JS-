@@ -6,6 +6,7 @@
     <title>Document</title>
 </head>
 <body>
+    <!-- <script src="js/ajax.js"></script> -->
     <script>
         // setTimeout(()=>{
         //     console.log('setTimeout')
@@ -20,15 +21,49 @@
             console.log('你是猪') 
         */
 
+        // function aa(){
+        //     return new Promise(resolve=>{
+        //         resolve('成功')       // 遇到这个就把then加到微任务中
+        //         console.log('promise')    //然而这个是主任务的正常顺序，会输出promise 你是猪 then
+        //     }).then(value=>{
+        //         console.log(value)
+        //     })
+        // }
+
+        // 出现下面的这个顺序是因为
+        // 首先出现的是你是猪，然后再出现setTimeout是因为xhr的这个promise的then还没有抛出，因为数据获取需要时间，微任务的队列中还没有then，
+        // 所以等先执行了setTimeout宏任务，然后又去执行xhr的微任务队列的then，然后再输出了 没走缓存 以及 数据data
+        function aa(url){
+            return new Promise((resolve,reject)=>{
+                let xhr = new XMLHttpRequest()
+                xhr.open("GET",url)
+                xhr.send()
+                xhr.onload = function(){
+                    if(this.status == 200){
+                        resolve(JSON.parse(this.response))
+                    }
+                    else{
+                        reject("加载失败")
+                    }
+                }
+                xhr.onerror = function(){
+                    reject(this)
+                }
+            }).then(
+                data=>{
+                    console.log(data)
+                    // cache.set(name,data)
+                    // console.log(cache)
+                    console.log('没走缓存')
+                    return data
+                }        
+            )
+        }
+
         setTimeout(()=>{
             console.log('setTimeout')
-        },0)                // 这个setTimeout是宏任务
-        new Promise(resolve=>{
-            resolve()       // 遇到这个就把then加到微任务中
-            console.log('promise')    //然而这个是主任务的正常顺序，会输出promise 你是猪 then
-        }).then(value=>{
-            console.log('then')
-        })
+        },0);                // 这个setTimeout是宏任务
+        aa(`http://rap2.taobao.org:38080/app/mock/244950/teacher/list`)
         console.log('你是猪') 
     </script>
 </body>

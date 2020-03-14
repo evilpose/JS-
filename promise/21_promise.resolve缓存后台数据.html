@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="js/ajax.js"></script>
+    <script>
+        // Promise.resolve('猪猪侠').then(
+        //     value=>{
+        //         console.log(value)
+        //     }
+        // )
+        // console.log(Promise.resolve('猪猪侠'))   // 显示是完成的状态
+
+        // function bh(){}
+        // bh.site = '猪猪侠'
+        // console.dir(bh)
+
+        // return就返回最上面的那个，往下的就不再运行了
+        function query(name){
+            const cache = query.cache || (query.cache = new Map())
+            if(cache.has(name)){
+                console.log('走缓存了')
+                return Promise.resolve(cache.get(name))
+            }
+            return ajax(`http://rap2.taobao.org:38080/app/mock/244950/teacher/${name}`).then(
+                data=>{
+                    // console.log(data)
+                    cache.set(name,data)
+                    // console.log(cache)
+                    console.log('没走缓存')
+                    return data
+                }        
+            )
+        }
+        query('list').then(data=>{
+            console.log(data)
+        })
+        query('list').then(data=>{
+            console.log(data)
+        })
+        // 因为拉取数据是需要时间的，所以第二个还没等数据拉回来并缓存就开始执行了，所以并没有走缓存
+        setTimeout(() => {
+            console.log('set')
+            query('list').then(data=>{
+                console.log(data)
+            })
+        }, 1000);
+        setTimeout(() => {
+            query('list').then(data=>{
+                console.log(data)
+            })
+        }, 1000);
+    </script>
+</body>
+</html>

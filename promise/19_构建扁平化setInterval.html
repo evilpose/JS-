@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            background-color: thistle;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    <script>
+        function interval(delay=1000,callback){
+            return new Promise((resolve,reject)=>{
+                let id = setInterval(() => {
+                    callback(id,resolve)
+                }, delay);
+            })
+        }
+        interval(100,(id,resolve)=>{
+            // console.log(12)
+            // clearInterval(id)
+            // resolve()
+            const div = document.querySelector('div')
+            let left = parseInt(window.getComputedStyle(div).left)
+            div.style.left = left + 10 + 'px'
+            if(left >= 200){
+                clearInterval(id)
+                resolve(div)
+            }
+        }).then(
+            value=>{
+                console.log(value)
+                return interval(100,(id,resolve)=>{
+                    const div = document.querySelector('div')
+                    box = document.getElementsByClassName('box')[0]
+                    let left = parseInt(window.getComputedStyle(box).left)
+                    div.style.left = left - 10 + 'px'
+                    if(left < 10){
+                        clearInterval(id)
+                        resolve(div)
+                    }
+                })
+            }
+        ).then(
+            value=>{
+                return interval(100,(id,resolve)=>{
+                    const div = document.querySelector('div')
+                    let top = parseInt(window.getComputedStyle(div).top)
+                    div.style.top = top + 10 + 'px'
+                    if(top>200){
+                        clearInterval(id)
+                        resolve(div)
+                    }
+                })
+            }
+        ).then(
+            value=>{
+                value.style.backgroundColor = 'red'
+            }
+        )
+    </script>
+</body>
+</html>

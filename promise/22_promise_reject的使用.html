@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 前面学过，promise可以把一些带有then方法的对象或者类可以封装成promies
+        let hd = {
+            then(resolve,reject){
+                // resolve('猪猪侠')
+            }
+        }
+        Promise.resolve(hd).then(value =>{
+            console.log(value)
+        })
+        new Promise((resolve,reject)=>{
+            resolve('成')
+        }).then(
+            value=>{
+                if(value != '成功'){
+                    // throw new Error('fail')
+                    return Promise.reject('参数错误')
+                }
+            }
+        ).catch(value=>console.log('error' + value))
+        // Promise.reject('fail').then(
+        //     value=>console.log(value)
+        // ).catch(
+        //     error=>console.log(error)
+        // )
+    </script>
+</body>
+</html>
