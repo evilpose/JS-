@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="./js/ajax.js"></script>
+    <script>
+        const bh1 = new Promise((resolve,reject)=>{
+            setTimeout(() => {
+                // resolve("第一个异步")
+                reject("第一个异步失败")
+            }, 1000);
+        })        // 如果在这儿捕获到了那么就被解决掉了 下面就是undefined
+        // .catch(
+        //     error=>console.log(error)
+        // )
+        const bh2 = new Promise((resolve,reject)=>{
+            setTimeout(() => {
+                resolve("第二个异步")
+            }, 1000);
+        })
+        Promise.all([bh1,bh2]).then(result=>{
+            console.log(result)
+        }).catch(
+            error=>console.log(error)
+        )
+
+        // 根据用户批量获取用户资料
+        const promise = ['list','list'].map(name=>{
+            return ajax(`http://rap2.taobao.org:38080/app/mock/244950/teacher/${name}`)
+        })
+        console.log(promise)
+        Promise.all(promise).then(result=>{
+            console.log(result)
+        })
+
+        // 进行简单的封装
+        function getUsers(names){
+            let promise =  names.map(name=>{
+                return ajax(`http://rap2.taobao.org:38080/app/mock/244950/teacher/${name}`)
+            })
+            return Promise.all(promise)
+        }
+        getUsers(['list','list']).then(
+            value=>console.log(value)
+        )
+    </script>
+</body>
+</html>

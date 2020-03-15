@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="./js/ajax.js"></script>
+   <script>
+       const bh1 = new Promise((resolve,reject)=>{
+           setTimeout(() => {
+               reject('第一个Promise')
+           }, 200);
+       })
+       const bh2 = new Promise((resolve,reject)=>{
+           setTimeout(() => {
+               resolve('第二个Promise')
+           }, 100);
+       })
+       Promise.race([bh1,bh2]).then(
+           results => console.log(results)
+       ).catch(
+           msg=>console.log(msg)
+       )
+       // race 是比较两个promise 那个快就返回哪一个 ,无论是resolve 还是reject   
+
+       let promise =[
+            ajax(`http://rap2.taobao.org:38080/app/mock/244950/teacher/list`),
+            new Promise((resolve,reject)=>{
+                setTimeout(() => {
+                    reject('请求超时')
+                }, 10);
+            })
+       ]
+       Promise.race(promise).then(
+           value=>{
+               console.log(value)
+           }
+        ).catch(
+            error=>console.log(error)
+        )
+
+        //对以上得进行封装
+        function query(url,delay=100){
+            let promise =[
+                ajax(url),
+                new Promise((resolve,reject)=>{
+                    setTimeout(() => {
+                        reject('请求超时')
+                    }, delay);
+                })
+            ]
+            return Promise.race(promise)
+        }
+        query('http://rap2.taobao.org:38080/app/mock/244950/teacher/list',2000).then(
+            value => console.log(value)            
+        ).catch(
+            error => console.log(error)
+        )
+   </script> 
+</body>
+</html>

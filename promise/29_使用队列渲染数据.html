@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class User{
+            ajax(user){
+                let url = `http://rap2.taobao.org:38080/app/mock/244949/job/`
+                return new Promise((resolve,reject)=>{
+                let xhr = new XMLHttpRequest()
+                xhr.open("GET",`${url}${user}`)
+                xhr.send()
+                xhr.onload = function(){
+                    if(this.status == 200){
+                        resolve(JSON.parse(this.response))
+                    }else if(this.status == 404){
+                        reject(new HttpError('用户不存在'))
+                    }
+                    else{
+                        reject("加载失败")
+                    }
+                }
+                xhr.onerror = function(){
+                    reject(this)
+                }
+            })
+            }
+            render(users){
+                users.reduce((promise,uesr)=>{
+                    return promise.then(_=>{
+                        return this.ajax(uesr)
+                    }).then(uesr=>{
+                        return this.view(uesr)
+                    })
+                },Promise.resolve())
+            }
+            view(user){
+                return new Promise(resolve=>{
+                    console.log(user)
+                    let h2 = document.createElement('h2')
+                    h2.innerHTML = user.data[0].title
+                    document.body.appendChild(h2)
+                    resolve()
+                })
+            }
+        }
+        new User().render(['list','list'])
+    </script>
+</body>
+</html>

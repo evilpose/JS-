@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="./js/ajax.js"></script>
+    <script>
+        let promise = Promise.resolve('猪猪侠')
+        // 也可以像下面我注释的这样写 return出来的promise是下一个than的对象
+        // promise = promise.then(
+        promise.then(
+            // value => console.log(value)
+            value => {
+                return new Promise((resolve)=>{
+                    setTimeout(() => {
+                        console.log(1)
+                        resolve()
+                    }, 1000);
+                })
+            }
+        )
+        // promise.then(
+        .then(
+            // value => console.log('ab')
+            value =>{
+                return new Promise((resolve)=>{
+                    setTimeout(() => {
+                        console.log(2)
+                        resolve()
+                    }, 1000);
+                })
+            }
+        )
+
+        // 队列就是每一个成员都是一个promise，下一个成员是依赖上一个成员的状态改变
+    </script>
+</body>
+</html>
