@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 语法糖就是使代码变成简洁
+        // new Promise(resolve=>{
+        //     console.log('钢铁侠')
+        //     resolve('rionman.com')
+        // }).then(v=>console.log(v))
+
+        // 发现 async 的 bh() 是一个已解决的 promise
+        // async function bh(){
+        //     // return 'batman.com'
+        //     return new Promise(resolve=>{
+        //         setTimeout(() => {
+        //             console.log('钢铁侠')
+        //             resolve('rionman.com')
+        //         }, 2000);
+        //         })
+        // }
+        // bh().then(v=>console.log(v))
+
+        // new Promise(resolve=>{
+        //     resolve('rionman.com')
+        // }).then(
+        //     v=>{
+        //         return new Promise(resolve=>{
+        //             setTimeout(() => {
+        //                 resolve('IronMan')
+        //             }, 2000);
+        //         })
+        //     }
+        // ).then(
+        //     v=>console.log(v)
+        // )
+
+        // async function bh(){
+        //     let name = await new Promise(resolve=>{
+        //         setTimeout(() => {
+        //             resolve('钢铁侠')
+        //         }, 2000);
+        //     })
+        //     let site = await new Promise(resolve=>{
+        //         setTimeout(() => {
+        //             resolve(name + 'ironMan.com')
+        //         }, 2000);
+        //     })
+        //     // console.log(name)
+        //     console.log(site)
+        // }
+        // bh()
+
+        async function bh(){
+            let name = await new Promise(resolve=>{
+                setTimeout(() => {
+                    resolve('钢铁侠')
+                }, 2000);
+            })
+            let site = await new Promise(resolve=>{
+                setTimeout(() => {
+                    resolve(name + 'ironMan.com')
+                }, 2000);
+            })
+            // console.log(name)
+            console.log(site)
+        }
+        bh()
+    </script>
+</body>
+</html>

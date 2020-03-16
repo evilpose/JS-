@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="./js/ajax.js"></script>
+  <script>
+    // async function bh(name) {
+    //   let user = await ajax(`htttp://rap2.taobao.org:38080/app/mock/244950/teacher/${name}`)
+    //   return user
+    // }
+    // bh('list').then(user=>{
+    //   console.log(user)
+    // }).catch(error=>{
+    //   console.log(error)
+    // })
+
+
+    // async function bh(name) {
+    //   try {
+    //     let user = await ajax(`http://rap2.taobao.org:38080/app/mock/244950/teacher/${name}`)
+    //     console.log('如果报错这儿是无法执行的')
+    //     return user
+    //   } catch (error) {
+    //     console.log(error)
+    //   }
+    //   console.log('这儿还有呢')
+    // }
+    // bh('list').then(e=>console.log(e))
+
+    async function bh(name) {
+      try {
+        let user1 = await ajax(`http://rap2.taobao.org:38080/app/mock/244950/teacher/${name}`)
+        let user2 = await ajax(`http://rap2.taobao.org:38080/app/mock/244950/teacher/${name}`)
+        return user2
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    bh('list').then(e=>console.log(e))
+  </script>
+</body>
+</html>

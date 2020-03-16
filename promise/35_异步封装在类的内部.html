@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="./js/ajax.js"></script>
+  <script>
+    class User{
+      async get(name){
+        let user = await ajax(`http://rap2.taobao.org:38080/app/mock/244950/teacher/${name}`)
+        user.data[0].name += '-ironMan.com'
+        return user
+      }
+    }
+    new User().get('list').then(
+      v=>console.log(v)
+    )
+
+    // async 和 await 都是基于promise实现的  所以 async 和 awite也是返回的一个promise，
+    // 所以可以直接用then赖获取return出来的值
+  </script>
+</body>
+</html>

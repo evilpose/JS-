@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="./js/ajax.js"></script>
+  <script>
+    // async function get(name){
+    //   return await ajax(`http://rap2.taobao.org:38080/app/mock/244950/teacher/${name}`)
+    // }
+
+    // let get = async function get(name){
+    //   return await ajax(`http://rap2.taobao.org:38080/app/mock/244950/teacher/${name}`)
+    // }
+
+    // get('list').then(v=>console.log(v))
+
+    let bh = {
+      async get(name){
+        return await ajax(`http://rap2.taobao.org:38080/app/mock/244950/teacher/${name}`)
+      }
+    }
+    bh.get('list').then(v=>console.log(v))
+
+    class User{
+      async get(name){
+        return await ajax(`http://rap2.taobao.org:38080/app/mock/244950/teacher/${name}`)
+      }
+    }
+    new User().get('list').then(v=>console.log(v))
+  </script>
+</body>
+</html>

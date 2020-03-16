@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="./js/ajax.js"></script>
+    <script>
+        async function get(name){
+            let url = 'http://rap2.taobao.org:38080/app/mock/244950/teacher/'
+            let user = await ajax(`${url}${name}`)
+            let lesson = await ajax(`${url}${name}`)
+        }
+        get('list')
+    </script>    
+</body>
+</html>

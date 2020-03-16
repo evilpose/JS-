@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="./js/ajax.js"></script>
+  <script>
+    // new Promise((resolve,reject)=>{
+    //   throw new Error('错误')
+    // }).catch(v=>console.log(v))
+
+    async function bh(name) {
+      // console.log(a)
+      return ajax(`http://rap2.taobao.org:38080/app/mock/244950/teacher/${name}`)
+    }
+    bh('list').then(value=>console.log(value))
+    .catch(v=>console.log(v))
+  </script>
+</body>
+
+</html>

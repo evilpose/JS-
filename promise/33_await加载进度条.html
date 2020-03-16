@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div{
+      height: 100px;
+      width: 0vw;
+      background-color: blueviolet;
+      display: grid;
+      place-content: center;
+      color: white;
+      font-size: 30px;
+    }
+  </style>
+</head>
+<body>
+    <div id="loading">0%</div>
+    <script src="./js/ajax.js"></script>
+    <script>
+      function query(name){
+        return ajax(`http://rap2.taobao.org:38080/app/mock/244950/teacher/${name}`)
+      }
+      async function loadUser(users){
+        for(let i = 0;i < users.length; i++){
+          let user = await query(users[i])
+          // console.log(i)
+          let progress = (i+1)/users.length*100
+          loading.style.width = progress + '%'
+          loading.innerHTML = Math.round(progress) + '%'
+        }
+      }
+      // query('list')
+      loadUser(['list','list','list','list'])
+
+      //也可以直接写成立即执行函数
+      // (async()=>{
+        // loadUser(['list','list','list','list'])
+        // for(let i = 0;i < users.length; i++){
+        //   let user = await query(users[i])
+        //   // console.log(i)
+        //   let progress = (i+1)/users.length*100
+        //   loading.style.width = progress + '%'
+        //   loading.innerHTML = Math.round(progress) + '%'
+        // }
+      // })()
+    </script>
+</body>
+</html>

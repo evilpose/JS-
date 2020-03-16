@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="./js/ajax.js"></script>
+  <script>
+    class User{
+      constructor(name){
+        this.name = name
+      }
+      then(resolve,reject){
+        // resolve()
+        let user = ajax(`http://rap2.taobao.org:38080/app/mock/244950/teacher/${this.name}`)
+        resolve(user)
+      }
+    }
+    async function get(){
+      let user = await new User('list');
+      console.log(user)
+    }
+    get()
+  </script>
+</body>
+</html>
