@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function person(name) {
+      this.name = name
+      this.colors = ['red','blue','green']
+    }
+    person.prototype.sayName = function () {
+      console.log(this.name)
+    }
+
+    function foo(name,age) {
+      // 继承属性
+      person.call(this,name)        // 这种继承的方式 就是相当于在foo构造函数中声明了  this.name = name  this.colors = ['red'....]
+      this.age = age
+    }
+
+
+    // 继承方法
+    foo.prototype = new person()    // 这个继承的方式和04的继承的方式一样，相当于 foo.prototype 是 peron 的实例函数，其中的this.name,this.colors是声明在foo.prototype上
+    foo.prototype.constructor = foo
+    foo.prototype.sayAge = function () {
+      console.log(this.age)
+    }
+    
+    // 这里去实例化的时候 和20行对应了起来，他会在实例中生成 this.name 和 this.colors 的属性，下面再去使用原型中的方法的时候会优先去查询在实例中有没有这种属性存在
+    var instance1 = new foo('钢铁侠',50)    
+    instance1.colors.push('balck')
+    console.log(instance1.colors)
+    instance1.sayAge()
+    instance1.sayName()
+
+    var instance2 = new foo('美国队长',170)
+    console.log(instance2.colors)
+    instance2.sayAge()
+    instance2.sayName()
+
+    // 组合继承避免了原型链和借用构造函数的缺陷，融合了他们的优点，成为了javascript中最常用的继承模式，而且，instanceof和inprototypeof()也能够识别基于组合继承创建对象。
+
+  </script>
+</body>
+</html>

@@ -57,3 +57,4 @@ C#、Java、JavaScript有自动垃圾回收机制，但c++和c就没有垃圾回
           t(k)
         }
         t = null
+总结参考:https://juejin.im/post/5cb33660e51d456e811d2687

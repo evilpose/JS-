@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 使用构造函数模式和原型模式
+    /* 
+      创建自定义类型的最常见方式，就是组合使用构造函数模式和原型模式。构造函数模式用于定义实例属性，而原型模式用于定义方法和共享属性。
+      结果，每个实例都会有自己的一份实例属性的副本，但同时又共享这对方法的引用，最大限度的节省了内存。
+    */
+    function person(name,age) {
+      this.name = name
+      this.age = age
+    }
+    person.prototype = {
+      constructor:person,
+      say:function() {
+        console.log(`我叫${this.name}，今年${this.age}岁了`);
+      }
+    }
+    let person1 = new person('王大锤',10)
+    let person2 = new person('美国队长',170)
+    person1.say()
+    person2.say()
+  </script>
+</body>
+</html>

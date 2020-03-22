@@ -33,11 +33,13 @@
     person1.name = '钢铁侠'     
     console.log(person1.name)   //  钢铁侠
     delete person1.name
+    delete person1.name
     console.log(person1.name)   //  布先生
 
 
     // hasOwnProperty() 可以判断某一个属性值是不是实例上的属性  是为true  否为false
     console.log(person1.hasOwnProperty("name"))   // false
+    console.log('name' in person1)                // true
     person1.name = '钢铁侠'
     console.log(person1.hasOwnProperty('name'))   // true
 
@@ -45,7 +47,7 @@
       console.log(key)      // name age show
     }
 
-    // 如果你想看到实例的所有属性,无论是否可枚举,可以使用 Object.getOwnPropertyNames()
+    // 如果你想看到原型对象的所有属性,无论是否可枚举,可以使用 Object.getOwnPropertyNames()
     console.log(Object.getOwnPropertyNames(person.prototype))       //constructor name age show  包含了不可枚举的constructor
   </script>
 </body>

@@ -15,7 +15,8 @@
         this.name = name
     }
     function Cat() {
-        Ani.call(this,'动物','猪')  
+        // Ani.call(this,'动物','猪')
+        Ani.bind(this,'动物','猪')() 
         // Ani.apply(this,['动物','猪'])
         this.color = "red"
     }

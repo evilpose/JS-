@@ -6,6 +6,48 @@
   <title>Document</title>
 </head>
 <body>
-  
+  <script>
+    function person() {
+      
+    }
+    person.prototype = {
+      name : '钢铁侠',
+      age : 19,
+      job :'web coder',
+      say : function() {
+        console.log(this.name);
+      }
+    }
+    console.dir(person.prototype)     // 你会发现这儿是没有 constructor 的 
+    console.dir(person.prototype.constructor)       // 这儿输出的obj的实例
+    console.log(person.prototype.constructor == Object)   // true
+
+    var person1 = new person()
+    console.log(person1 instanceof person)    // true
+    console.log(person1 instanceof Object)    // true
+    console.log(person1.constructor == Object)    // true
+    console.log(person1.constructor == person)    // false
+    // 用instanceof 操作符测试 object 和 person 仍然返回 true 但是 constructor 属性则等于 Object 而不等于 person了
+    // 如果constructor的值很重要 可以使用下面的方式特意设置回适当的值
+
+    function me(){
+    }
+    me.prototype = {
+      constructor: me,
+      name:'蝙蝠侠'
+    }
+    for(let key in me.prototype){
+      console.log(key)        // constructor name
+    }
+    // 你会发现这里居然输出了 constructor ，因为上面的这种写法会把 constructor 设置为可枚举的，默认是不可枚举的
+
+    Object.defineProperty(me.prototype,'constructor',{
+      enumerable:false,
+      value:me
+    })
+     for(let key in me.prototype){
+      console.log(key)        //  name
+    }
+  </script>
 </body>
 </html>

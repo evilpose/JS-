@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function foo(a,b){
+      console.log(this.name)
+      console.log(arguments)
+    }
+
+    function person() {
+      let arr = [1,2,3,4,5]
+      arr.push.apply(arr,arguments)
+      console.log(arr);
+    }
+    person(1,2000)
+
+    var one = [1,2,3,4,5]
+    var two = [4,5,6,7,8]
+    var three = one.concat(two)
+    console.log(three)
+
+    function bar(){
+      var o = {name:'王五'}
+      foo.apply(o,arguments)
+    }
+    bar(1,2,3,4)
+  </script>
+</body>
+</html>

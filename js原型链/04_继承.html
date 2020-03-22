@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function person() {
+      this.name = '我是person'
+    }
+    person.prototype.say = function(){
+      console.log(this.name)
+    }
+
+    function foo(){
+      this.age = '我19岁'
+    }
+    foo.prototype = new person()
+    foo.prototype.show = function(){
+      console.log(this.age)
+    }
+
+    var instance = new foo()
+    instance.say()
+    instance.show()
+
+  </script>
+</body>
+</html>
