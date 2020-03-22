@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function person(name) {
+    }
+    person.prototype.name = '布先生'
+    person.prototype.age = '19岁'
+    person.prototype.show = function(){
+      console.log(this.name + this.age);
+    }
+    let person1 = new person()
+    person1.show()
+
+    // isPrototypeOf()    用来验证 person1 和 person 之前存在原型之间的关系
+    console.log(person.prototype.isPrototypeOf(person1));       // true
+    // es5 新增了一个方法   用来返回person1 的 [prototype] 值，来验证 是否和 person.prototype 是否相等
+    console.log(Object.getPrototypeOf(person1) == person.prototype)     // true
+    // 也可以通过 Object.getPrototypeOf()来获取原型对象的某一个的属性值
+    console.log(Object.getPrototypeOf(person1).name)        // 布先生  
+
+    /*     
+        如果你访问一个实例中的属性，它会首先在实例上面进行访问查找，如果能找到就直接输出属性值，如果访问不到，它会接下查到其原型上的是否存在这个属性，
+        如果存在就是输出这个属性，通过peron1.name是不会改变原型上的属性的，但是会在实例上面增加一个名为name的属性,但是可以通过person1.__proto__.name
+        去修改其原型的属性值。 不过,可以使用delete操作符可以完全删除实例属性,从而让我们能够重新访问原型中的属性.
+    */
+    console.log(person1.name)   //  布先生
+    person1.name = '钢铁侠'     
+    console.log(person1.name)   //  钢铁侠
+    delete person1.name
+    console.log(person1.name)   //  布先生
+
+
+    // hasOwnProperty() 可以判断某一个属性值是不是实例上的属性  是为true  否为false
+    console.log(person1.hasOwnProperty("name"))   // false
+    person1.name = '钢铁侠'
+    console.log(person1.hasOwnProperty('name'))   // true
+
+    for(let key in person.prototype){
+      console.log(key)      // name age show
+    }
+
+    // 如果你想看到实例的所有属性,无论是否可枚举,可以使用 Object.getOwnPropertyNames()
+    console.log(Object.getOwnPropertyNames(person.prototype))       //constructor name age show  包含了不可枚举的constructor
+  </script>
+</body>
+</html>
