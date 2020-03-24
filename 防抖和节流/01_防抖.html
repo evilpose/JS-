@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button id="btn">提交成功</button>
+  <script>
+    function success(name) {
+      console.log(name);
+    }
+
+    // 防抖函数
+    // 限定在一定的时间之内，无论点击多少次，使方法只执行一次，是取最后一次的点击去执行。
+    const debounce = (fn,delay) => {
+      console.log('哈哈')
+      let timer = null
+      return (...args) => {
+        clearTimeout(timer)
+        timer = setTimeout(() => {
+          fn.apply(this,args)
+        }, delay);
+      }
+    }
+    const oDe = debounce(success,1000)
+
+    let btn = document.getElementById('btn')
+    btn.addEventListener('click',()=>{
+      oDe('我是参数')
+    })
+  </script>
+</body>
+</html>
