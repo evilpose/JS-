@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    img{
+      height: 500px;
+      width:100%;
+    }
+  </style>
+</head>
+  <img src="./timg.gif" data-src="https://ssyerv1.oss-cn-hangzhou.aliyuncs.com/picture/a8c4f6c7f3044301b96897653937e177.jpg">
+  <img src="./timg.gif" data-src="https://ssyerv1.oss-cn-hangzhou.aliyuncs.com/picture/1b1e5147038148ecb19f09f2cf0fda09.jpg">
+  <img src="./timg.gif" data-src="https://ssyerv1.oss-cn-hangzhou.aliyuncs.com/picture/1b1e5147038148ecb19f09f2cf0fda09.jpg">
+  <img src="./timg.gif" data-src="https://ssyerv1.oss-cn-hangzhou.aliyuncs.com/picture/11e66a517f8a4e27ba22456210fe7a96.jpg">
+  <img src="./timg.gif" data-src="https://ssyerv1.oss-cn-hangzhou.aliyuncs.com/picture/37ce21dbdef547c0a9025796224e784d.jpg">
+  <img src="./timg.gif" data-src="https://ssyerv1.oss-cn-hangzhou.aliyuncs.com/picture/f240d73aea4f4d3fb48a6b7bf552e38b.jpg">
+<body>
+  <script>
+    function isInSight(el){
+      const bound = el.getBoundingClientRect()
+      const clientHeight = window.innerHeight
+      return bound.top <= clientHeight + 100
+    }
+    function lazyLoad() {
+      for(let value of document.getElementsByTagName('img')){
+        if(isInSight(value)){
+          value.src = value.getAttribute('data-src')
+        }
+      }
+    }
+    lazyLoad()
+    window.onscroll = function () {
+      lazyLoad();
+    }
+  </script>
+</body>
+</html>
