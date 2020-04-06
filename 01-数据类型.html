@@ -52,5 +52,11 @@
     console.log(b1 instanceof Object)   // true  b1 是实例对象  Object是构造函数
     console.log(b1 instanceof Array)  // false
     console.log(b1.b2 instanceof Array,b1.b2 instanceof Object)  // true true
+
+    // 判断arr的方法
+    var NewArr = [1,2,3,4,5]
+    console.log(NewArr instanceof Array)
+    console.log(Array.isArray(NewArr))
+    console.log(Object.prototype.toString.call(NewArr))
 </script>
 </html>
