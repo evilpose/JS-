@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    class Cache{
+      static data = {}
+      static set(name,value){
+        return (this.data[name] = value)
+      }
+      static get(name){
+        return this.data[name]
+      }
+    }
+    Cache.set('bh','ironman')
+    console.log(Cache.get('bh'))
+    let user = {
+      name:'apple',
+      desc:'用户',
+      key:Symbol('会员资料')
+    }
+    let cart = {
+      name:'apple',
+      desc:'购物车',
+      key:Symbol('购物车数据')
+    }
+    Cache.set(user.key,user)
+    Cache.set(cart.key,cart)
+    console.dir(Cache)
+    console.log(Cache.get(user.key))
+    console.log(Cache.get(cart.key))
+  </script>
+</body>
+</html>

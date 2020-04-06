@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+  // let user1 = '李四'
+  // let user2 = '李四'
+  //   let grade = {
+  //     [user1]: { js: 100, css: 89 },
+  //     [user2]: { js: 35, css: 44 }
+  //   }
+  //   console.log(grade)
+
+    // 使用的时候加上中括号防止当作中括号来使用
+    let user1 = {
+      name: '李四',
+      key:Symbol()
+    }
+    let user2 = {
+      name: '李四',
+      key:Symbol()
+    }
+    let grade = {
+      [user1.key]: { js: 100, css: 89 },
+      [user2.key]: { js: 35, css: 44 }
+    }
+    console.log(grade[user1.key])
+    
+  </script>
+</body>
+</html>

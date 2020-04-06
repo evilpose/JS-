@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 可以把他当作一个  永远不会重复  的字符串 这里如果你声明的数据描述是相同的但是也不会相等
+    let bh = Symbol('我是Iron Man')   // 里面是进行的描述
+    let edu = Symbol()
+    // console.log(typeof(bh))   // symbol
+    // console.log(bh === edu)   // false
+    // bh.name = '钢铁侠'  
+    // console.log(bh.name)      // undefined
+    console.log(bh)       //  Symbol(我是Iron Man)
+    console.log(bh.toString())       //  Symbol(我是Iron Man)
+    console.log(bh.description)       // 我是Iron Man  输出的是描述
+
+
+    // 如果一个数据会反复使用就可以使用 Symbol.for 来定义，全局保存，得使用keyFor来读取，普通的声明不是全局的，所以用KeyFor是读取不到的
+    let a = Symbol.for('bh')      // 这样声明是能够在内存中保存的，下次你声明的时候就会直接用
+    // let b = Symbol.for('hdcms')
+    // console.log(a === b)
+    console.log(Symbol.keyFor(a))   // 输出描述 bh
+    console.log(a.description)   // 输出描述 bh
+    let c = Symbol('ccc')
+    console.log(Symbol.keyFor(c))   // undefined
+  </script>
+</body>
+</html>

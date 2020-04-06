@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let symbol = Symbol('这是一个Symbol类型')
+    let bh = {
+      name:'Iron man',
+      [symbol]:'我是钢铁侠'
+    }
+    // console.dir(bh)
+    // for of 和 for in 都无法输出symbol
+    // for(const key in bh){
+    //   console.log(bh[key])      // Iron man
+    // }
+    // for(const value of Object.values(bh)){
+    //   console.log(value)        // Iron man
+    // }
+    // getOwnPropertySymbols只能遍历symbol类型
+    // for(const key of Object.getOwnPropertySymbols(bh)){
+    //   console.log(key)      //Symbol(这是一个Symbol类型)
+    //   console.log(bh[key])      //我是钢铁侠
+    // }
+    // Reflect.ownKeys() 能够遍历包括 Symbol 在内的所有属性
+    // for(const key of Reflect.ownKeys(bh)){
+    //   console.log(key)      // name Symbol(这是一个Symbol类型)
+    // }
+    let site = Symbol('这是一个Symbol')
+    class User{
+      constructor(name){
+        this.name = name
+        this[site] = '钢铁侠'
+      }
+      getName(){
+        return `${this[site]} + ${this.name}`
+      }
+    }
+
+    let edu = new User('李四')
+    console.log(edu.getName())  // 李四 + 钢铁侠
+    for(const key in edu){
+      console.log(edu[key])    // 李四
+    }
+  </script>
+</body>
+</html>
