@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /* 
+      let obj = {
+        name:'bh'
+      }
+      console.log(obj.name)
+      // 暴露给用户的其实是newObj  甚至用户可能都不知道obj
+      let newObj = new Proxy(obj,{
+        get(target,property){
+          // console.log(target,property)
+          console.log(`您访问了${property}属性`)
+          return target[property]
+        }
+      })
+      console.log(newObj.name) 
+    */
+
+    // 访问一个对象身上的属性，默认不存在的时候给了 undefined ，如果不存在报错
+    let obj = {
+      name:'Strive'
+    } 
+    let newObj = new Proxy(obj,{
+      get(target,property){
+        if(property in target){
+          return target[property]
+        }else{
+          // throw new ReferenceError(`${property}不在此对象上`)
+          console.warn(`${property}不在此对象上`);
+          return '^_^'
+        }
+      }
+    })
+    console.log(newObj.name)
+    console.log(newObj.age)
+  </script>
+</body>
+</html>

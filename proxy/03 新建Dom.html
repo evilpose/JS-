@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const DOM = new Proxy({},{
+      get(target,property){
+        // console.log(target,property)
+        // property DOM.xxx 里面的 xxx
+        return function (attr={},...children) {
+          console.log(attr,children)
+          const el = document.createElement(property)
+          // 添加属性
+          for(let key of Object.keys(attr)){
+            el.setAttribute(key,attr[key])
+          }
+          // 添加子元素
+          for(let child of children){
+            if(typeof child == 'string'){
+              child = document.createTextNode(child)
+            }
+            el.appendChild(child)
+          }
+          return el;
+        }
+      }
+    })
+    let oDiv = DOM.div({id:'div1',class:'aaa'},'我是div','呵呵呵')
+    console.log(oDiv)
+
+    let aDiv = DOM.div({},
+      DOM.a({href:'http.baidu.com'},'访问百度'),
+      DOM.ul({},
+        DOM.li({},'1'),
+        DOM.li({},'2'),
+        DOM.li({},'3'),
+        DOM.li({},'4')
+      ),
+    )
+
+    window.onload = function () {
+      console.log(document.querySelector('body').appendChild(aDiv))
+    }
+  </script>
+</body>
+</html>

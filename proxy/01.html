@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /* 
+      proxy 代理
+
+      语法：new Proxy(target,handler)
+
+      target : 代理目标，拦截模板
+      handler : 对象，里面定义了拦截行为
+        get(target,key)
+
+      有了代理拦截，相当于可以帮助我们重写对象属性和方法的默认操作，使用自己的逻辑
+     */
+     let obj = {
+       name:"张三",
+       age:30
+     }
+     let objProxy = new Proxy(obj,{
+       // get 用来拦截对目标对象属性的访问
+       get:function (target,key) {
+          console.log(target,key)
+          return obj[key]
+        }
+     })
+      console.log(objProxy.name)
+      console.log(objProxy.age)
+      {
+        // 如果访问的目标对象属性不存在的话，希望能抛出一个错误
+        // 如果没有代理/拦截操作，都会返回undefined
+        let obj2 = {
+          name:'李四',
+          age:20
+        }
+        let objProxy = new Proxy(obj2,{
+          get:(target,key)=>{
+            if(key in obj2){
+              obj2[key]
+            }else{
+              // throw new ReferenceError(`该对象上不存在该属性${key}属性`)              
+            }
+          }
+        })
+        console.log(objProxy.temp)
+      }
+      {
+        // 如果年龄值大于100的话 报错 年龄无效
+        let obj3 = {
+          name:'李四',
+          age:20
+        }
+        let objProxy2 = new Proxy(obj3,{
+          get:(target,key)=>{
+            if(key in obj3){
+              obj3[key]
+            }else{
+              // throw new ReferenceError(`该对象上不存在该属性${key}属性`)              
+            }
+          },
+          set:(target,key,value)=>{
+            console.log(key,value)
+            if(key === 'age'){
+              if(value > 100){
+                // throw new RangeError('年龄值无效')
+              }
+            }
+            // 去除空格
+            if(typeof(value) == 'string'){
+              value = value.trim()
+            }
+            target[key] = value
+          }
+        })
+        console.log(objProxy2.temp)
+        objProxy2.age = 120
+        objProxy2.name = '  sd  '
+        console.log(objProxy2.name)
+        console.log(obj3.name)
+      }
+  </script>
+</body>
+</html>
