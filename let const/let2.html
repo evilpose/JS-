@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    // 选项卡 
+    window.onload = function () {
+      var aInput = document.querySelectorAll('input')
+      for(let i = 0;i < aInput.length;i++){
+        aInput[i].onclick = function () {
+          alert(i)
+        }
+      }
+    }
+  </script>
+</head>
+<body>
+  <input type="button" value="aaa">
+  <input type="button" value="bbb">
+  <input type="button" value="ccc">
+</body>
+</html>

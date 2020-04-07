@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // if(true){
+    //   let a = 1
+    //   const b = 2
+    // }
+    // console.log(a,b) // a b is not defined
+
+    // let 没有变量提升，没有预解析
+    // 在代码块中，只要let定义的变量，在之前使用，都是报错
+    let a = 12
+    function fn() {
+      console.log(a)  // 这儿叫做 暂时性死区
+      let a = 5       // 这儿就消失了
+    }
+    fn()
+
+    // a是无法重复定义的，但是可以重新赋值 a = 6
+    // let a = 12
+    // let a = 5     //报错 a has already been declared
+
+    // for(let i = 0;i<10;i++){}
+    // console.log(i)   // i is not defined  没有定义
+
+    // for循环里面是父级作用域，反正和for里面不是一个，但是也不是属于全局的
+    // for(let i = 0;i < 3;i++){
+    //   let i = 'abc'
+    //   console.log(i)    // 输出了三次abc
+    // }
+    // console.log(i)   // i is not defined  没有定义
+
+    var arr = []
+    for(let i = 0;i<10;i++){
+      arr[i] = function () {
+        console.log(i)
+      }
+    }
+    arr[5]()  // 输出5 如果是var定义的话就输出10
+  </script>
+</body>
+</html>

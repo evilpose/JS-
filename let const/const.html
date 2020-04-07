@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // const 定义常量，定义完之后是不能被修改的 
+    const a = 12
+    // const a 不进行赋值也是报错
+    // a = 5   // 报错 说不能改
+    console.log(a)  
+    /* 
+      const 特性和 let 的特性一样  
+      const 定义变量不能修改
+      const 定义完变量必须紧接着赋值，不能后赋值，不能修改
+     */
+
+
+    //  和let一样是暂时性死区
+    // const b = 13
+    // function show() {
+    //   console.log(b)    // 报错 暂时性死区
+    //   const b = 5       // 结束
+    // }
+    // show()
+
+    // const arr = ['apple','banana']
+    // // arr = []  // 报错 不能修改
+    // arr.push('orange')    // 能修改
+    // console.log(arr)
+
+    // 但是可以用Object.freeze()进行冻结
+    const arr = Object.freeze(['apple','banana'])
+    arr.push('orange')    // 报错，不可扩展
+
+    // 之前的话 是立即执行函数来代表块级作用域
+    // 以后要用let  不要用var
+  </script>
+</body>
+</html>
