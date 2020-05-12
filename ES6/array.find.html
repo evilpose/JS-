@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /* 
+      find() 方法返回数组中满足提供的测试函数的第一个元素的值，否则返回 undefined
+      Array.find((value,index,arr)=>{
+
+      })
+      value 每一次迭代查找的数组元素  必选
+      index 每一次迭代查找的数组元素的索引  可选
+      arr 被查找的数组  可选
+    */
+    let array = [1,2,3,4,5,6,7,8]
+    let a1 = array.find((value)=>{
+      return value > 4
+    })
+    console.log(a1) // 5
+
+    let a2 = array.find((value)=>{
+      return value > 10
+    })
+    console.log(a2) // undefined
+
+    let obj = [
+      { name: '张三', age: 16 },
+      { name: '赵四', age: 17 },
+      { name: '王五', age: 18 }
+    ]
+    let b1 = obj.find((value)=>{
+      return value.age > 16
+    })
+    console.log(b1) // { name: '赵四', age: 17}
+  </script>
+</body>
+</html>

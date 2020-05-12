@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body{
+      width:100%;
+      height: 100vh;
+      margin:0px;
+      display:grid;
+      place-content:center;
+    }
+    .main{
+      width:500px;
+      height:350px;
+      background-color:#e0e0e0;
+      overflow: hidden;
+      position: relative;
+      border-radius:10px;
+    }
+    .sec{
+      width:3000px;
+      height:300px;
+      background-color: #424242;
+      display:grid;
+      grid-template-columns: repeat(6, 1fr);
+      grid-template-rows:1fr;
+      /* 一秒的动画 */
+      transition-duration: 1s;
+      position: absolute;
+      left:-500px;
+    }
+    .btn{
+      display:flex;
+    }
+    img{
+      height: 100%;
+      width: 100%;
+    }
+    ul{
+      list-style: none;
+      display: flex;
+    }
+    .allbtn{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      height: 50px;
+      position: absolute;
+      bottom:0px;
+      width:100%;
+    }
+    .btn{
+      background-color: #f5f5f5;
+      width:30px;
+      height:30px;
+      border-radius:50%;
+      list-style: none;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      margin:0 10px;
+      cursor: pointer;
+    }
+    .active{
+      background-color: #757575;
+    }
+  </style>
+</head>
+<body>
+  <div class='main'>
+    <div class='sec'>
+      <!-- 注意alt，alt相同的img也是相同，目的是做成左移右移能够无缝衔接到另一端的效果 -->
+      <img src="https://ssyerv1.oss-cn-hangzhou.aliyuncs.com/picture/158e69c2c89949b683b15b558eb0d4d0.jpg" alt="4">
+      <img src="https://ssyerv1.oss-cn-hangzhou.aliyuncs.com/picture/4aa9428c56b14e43af727312836636db.jpg" alt="1">
+      <img src="https://ssyerv1.oss-cn-hangzhou.aliyuncs.com/picture/ef93f0eb3c0a466b8abfd5d24b2e1ae9.jpg" alt="2">
+      <img src="https://ssyerv1.oss-cn-hangzhou.aliyuncs.com/picture/61f189f0d4174e8985a77129097bc13c.jpg" alt="3">
+      <img src="https://ssyerv1.oss-cn-hangzhou.aliyuncs.com/picture/158e69c2c89949b683b15b558eb0d4d0.jpg" alt="4">
+      <img src="https://ssyerv1.oss-cn-hangzhou.aliyuncs.com/picture/4aa9428c56b14e43af727312836636db.jpg" alt="1">
+    </div>
+    <div class='allbtn'>
+      <div class='btn btnleft'>左</div>
+      <div class='btn btn1 active'>1</div>
+      <div class='btn btn2'>2</div>
+      <div class='btn btn3'>3</div>
+      <div class='btn btn4'>4</div>
+      <div class='btn btnright'>右</div>
+    </div>
+  </div>
+  <script>
+    let position = 1    // 当前展示图片的标注
+    let active = 1      // 上一张图片的标注
+    function check(e){
+        // console.log(position)
+        // console.log(e)
+        // 判断用户的点击效果是否有效
+        if(['1','2','3','4','左','右'].indexOf(e.target.innerText) == -1) return
+        if(e.target.innerText == '左'){
+          // 如果是左边缘的话，采用的是先往左移动 动画一秒，然后在动画结束的时候直接变成右边缘，产生一种左移到右边缘的效果
+          if(position == 1){
+            document.querySelector('.sec').setAttribute('style',`left:0px;`)
+            setTimeout(() => {
+              document.querySelector('.sec').setAttribute('style',`left:-2000px;transition-duration:0s`)
+            }, 1000);
+            // 移动到最左边了，所以位置标注到4
+            position = 4
+          }else{
+          // 当前位置标注,并且进行左移
+            position = position - 1
+            length = position*(-500)
+            document.querySelector('.sec').setAttribute('style',`left:${length}px;`)
+          }
+        }else{
+          // 如果是右边缘的话，采用的是先往右移动 动画一秒，然后在动画结束的时候直接变成左边缘，产生一种右移到左边缘的效果
+          if(e.target.innerText == '右'){
+            if(position == 4){
+              document.querySelector('.sec').setAttribute('style',`left:-2500px;`)
+              setTimeout(() => {
+                document.querySelector('.sec').setAttribute('style',`left:-500px;transition-duration:0s`)
+              }, 1000);
+            // 移动到最右边边了，所以位置标注到1
+            position = 1
+            }else{
+          // 当前位置标注,并且进行左移
+              position = position + 1
+              length = position*(-500)
+              document.querySelector('.sec').setAttribute('style',`left:${length}px;`)
+            }
+          }
+          // 如果是点击效果的话，直接进行位置的跨动就行
+          else{
+            position = parseInt(e.target.innerText)
+            length = position*(-500)
+            document.querySelector('.sec').setAttribute('style',`left:${length}px;`)
+          }
+        }
+        // console.log(position)
+        // 给下标添加背景色
+        document.querySelector(`.btn${active}`).setAttribute('class',`btn btn${active}`)
+        active = position
+        // 给之前的取消背景色
+        document.querySelector(`.btn${position}`).setAttribute('class',`btn btn${position} active`)
+    }
+    // 节流-立即触发
+    function throttle(fn,delay){
+      let flag = false
+      return (...args)=>{
+        if(flag == true) return
+        flag = true
+        fn.apply(this,args)
+        setTimeout(() => {
+          flag = false
+        }, delay);
+      }
+    }
+    const btn = throttle(check,1000)    //利用节流函数延迟一秒，如果用户在一秒内重复点击移动，那么不起作用
+    let Interval = null     // 启动网页加载成功的自动滚动效果
+    window.onload = function(){
+      Interval = setInterval(() => {
+        (function(){
+          document.querySelector(".btnright").click();    // 加载后右移，自动触发点击效果
+        })()
+      }, 1000);
+    }
+    let timer = null
+    document.querySelector('.allbtn').addEventListener('click',function (e) {
+      /* 
+        判断是用户自己的点击，还是脚本自动触发的点击 如果是用户点击触发的，那么就直接清除掉轮播图的自己的滚动效果，
+        如果是上面的代码的触发效果，那么就触发右点击效果
+      */ 
+      if(e.isTrusted == true){    
+        clearInterval(Interval)
+        btn(e)
+        clearTimeout(timer)
+        timer = setTimeout(() => {
+          Interval = setInterval(() => {
+          (function(){
+              document.querySelector(".btnright").click();
+            })()
+          }, 1000);
+        }, 3000);     //用户点击后三秒没有操作 那么再次启动自动右移动的效果
+      }
+      btn(e)
+    })
+  </script>
+</body>
+</html>
