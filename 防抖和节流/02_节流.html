@@ -13,8 +13,7 @@
       console.log(name)
     }
     // 函数节流
-    const throttle = (fn,delay) => {
-      console.log('哈哈')
+    const throttle = (fn, delay) => {
       let flag = true
       return (...args) => {
         if(!flag) return
@@ -32,6 +31,19 @@
     btn.addEventListener('click',()=>{
       oTh('我是参数')
     })
+
+    // const throttle = (fn, delay) => {
+    //   let flag = true
+    //   return () => {
+    //     if (!flag) return
+    //     flag = false
+    //     setTimeout(() => {
+    //       fn()
+    //       flag = true
+    //     }, delay);
+    //   }
+    // }
+
   </script>
 </body>
 </html>

@@ -10,19 +10,46 @@
     
 </body>
 <script>
-    function Ani(type,name) {
-        this.type = type
-        this.name = name
+    var func = function(arg1, arg2) {
+        this.value1 = arg1
+        this.value2 = arg2
+        console.log(this)
     }
-    function Cat() {
-        // Ani.call(this,'动物','猪')
-        Ani.bind(this,'动物','猪')() 
-        // Ani.apply(this,['动物','猪'])
-        this.color = "red"
+    // func(1, 2)  //  输出 window
+    // console.log(window.value1, window.value2)       //  1  2
+    // console.log(func.value1, func.value2)       // undefined undefined
+
+    // func.apply(func, [1, 2])    //  输出  func 函数
+    // console.log(window.value1, window.value2)       //  undefined undefined
+    // console.log(func.value1, func.value2)       // 1 2
+
+    // func.bind(func, 1, 2)   // bind 返回是一个函数 这儿并不会输出什么 因为得（）一下啊
+    // func.bind(func, 1, 2)()  // 输出func函数
+    // console.log(func.value1, func.value2)       // 1  2
+    // console.log(window.value1, window.value2)       //  undefined undefined
+
+    // func.call(func, 1, 2)
+    // console.log(func.value1, func.value2)       // 1  2
+    // console.log(window.value1, window.value2)       //  undefined undefined
+
+
+    let fn = function() {
+        console.log(this.x)
     }
-    var cat1 = new Cat();
-    console.log(cat1.color)
-    console.log(cat1.type)
-    console.log(cat1.name)
+    let obj = {
+        x: 1000
+    }
+    fn()        // undefined3
+    fn.bind(obj)()  // 100
+    fn.apply(obj)   // 100
+    fn.call(obj)    // 100
+
+    /* 
+        代码区别  bind 比 call 和 apply 多一次执行 （）
+
+        1 三个函数都是用来改变 this 指向得
+        2 三个函数第一个参数都是this要指向得对象
+        3 bind返回的是对应的函数 而call和apply是立即执行的
+     */
 </script>
 </html>
