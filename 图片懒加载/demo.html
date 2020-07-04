@@ -19,13 +19,26 @@
   <img src="./timg.gif" data-src="https://ssyerv1.oss-cn-hangzhou.aliyuncs.com/picture/f240d73aea4f4d3fb48a6b7bf552e38b.jpg">
 <body>
   <script>
+    /* 
+      理解：getBoundingClientRect用于获取某个元素相对于视窗的位置集合。集合中有top, right, bottom, left等属性。
+        
+        rectObject.top：元素上边到视窗上边的距离;
+
+        rectObject.right：元素右边到视窗左边的距离;
+
+        rectObject.bottom：元素下边到视窗上边的距离;
+
+        rectObject.left：元素左边到视窗左边的距离;
+
+     */
     function isInSight(el){
       const bound = el.getBoundingClientRect()
       const clientHeight = window.innerHeight
-      return bound.top <= clientHeight + 100
+      return bound.top <= clientHeight + 100  // 所以如果还差100就到了 那么就会加载出来
     }
     function lazyLoad() {
       for(let value of document.getElementsByTagName('img')){
+        console.log(value)
         if(isInSight(value)){
           value.src = value.getAttribute('data-src')
         }

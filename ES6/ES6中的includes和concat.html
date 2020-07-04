@@ -19,13 +19,18 @@
         console.log([1,2,NaN].includes(NaN))       // true
 
         // concat()方法
-        // 用于连接两个数组，该方法不会改变现有的数组，而仅仅会返回被连接数组的一个副本，如果有相同的并不重合
+        // 用于连接两个数组，该方法  不会改变现有的数组   ，而仅仅会返回被连接数组的一个副本，如果有相同的  并不重合
         /* let a = [1,2,3]
         console.log(a.concat(4,5))
         let b = [6,7]
         console.log(a.concat(b))
         let c = [8,9]
         console.log(a.concat(b,c)) */
+        
+        let arr1 = [1, 2, 4]
+        let arr2 = [2, 5, 6]
+        let arr3 = arr1.concat(arr2) 
+        console.log(arr3)
     </script>
 </body>
 </html>

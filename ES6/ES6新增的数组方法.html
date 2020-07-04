@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+
+    let Arr = ['a', 'b', 'c', 1, 2]
+    let thisObj = [
+      { name: '张三', age: 16 },
+      { name: '赵四', age: 17 },
+      { name: '王五', age: 18 }
+    ]
+
+    /* 
+      1 Array.from
+        这个东西就是把一些集合，或者长的像数组的伪数组转换成真的数组，比如arguments，js选择器找到dom集合,还有对象模拟的数组
+    */
+    let obj = {
+      '0': 1,
+      length: 1
+    }
+    console.log(obj)  // {0:1, length:1}
+    console.log(Array.from(obj))  // [1]
+    console.log(obj)
+    /* 
+      2 Array.of
+        把参数合并为一个数组，如果参数为空，则返回一个空数组
+    */
+    let ArrayOf = Array.of(1,2,3,4,5)
+    console.log(ArrayOf)    // [1,2,3,4,5]
+    console.log(Array.of())   // []
+
+    /* 
+      3 copyWithin
+      首先，参数有3个   1: 被替换的起始位置   2: 选取替换值的起始位置   3: 选取替换值得结束位置
+    */
+    console.log(Arr.copyWithin(1,2,5))  //  ["a", "c", 1, 2, 2]
+
+    /* 
+      4 find / findIndex
+        find  返回数组中第一个符合条件的元素, findIndex返回索引
+    */
+    let findArr = Arr.find((item) => {
+      return item > 1
+    })
+    console.log(findArr)
+    
+    console.log(thisObj.find(item => {    // {name: "张三", age: 16}
+      return item.age > 10
+    }))
+    console.log(thisObj.findIndex(item => {   // 0
+      return item.age > 10
+    }))
+
+    /* 
+      5 fill
+        改变了数组,一 字面意思填满，实际功能就是把数组中的每一个元素替换成指定值 二 指定范围替换
+    */
+    console.log(Arr)      //  ["a", "c", 1, 2, 2]
+    console.log(Arr.fill(5))    //  [5, 5, 5, 5, 5]
+    console.log(Arr)    //   [5, 5, 5, 5, 5]
+    console.log(Arr.fill(3, 1, 3))    //  [5, 3, 3, 5, 5]
+
+    /* 
+      6 entries/keys/values
+    */
+    let a = ['a', 'b', 'c']
+    for(let k of a.keys()) {
+      console.log(k)  // 0 1 2
+    }
+    for(let value of a.values()) {
+      console.log(value)  // a b c
+    }
+    for(let [k, values] of a.entries()) {
+      console.log(k + values) // 0a 1b 2c
+    }
+
+    /* 
+      7 include
+    */
+    console.log([1,2,3,4,NaN].includes(2))         // true
+    console.log([1,2,3,4,NaN].includes(NaN))         // true
+  </script>
+</body>
+</html>
