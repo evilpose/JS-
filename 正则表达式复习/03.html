@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="content">bh.com</div>
+  <script>
+    // let bh = 'bh.com';
+    // let reg = new RegExp('u', 'g');
+    // console.log(reg.test(bh))    // false
+
+    // let bh = 'bh.com';
+    // let a = 'com'
+    // let reg = new RegExp(a, 'g');   
+    // console.log(reg.test(bh));    // true
+
+    // console.log('abc'.replace(/\w/g, str=>{
+    //   return 'bh'
+    // }))
+
+    let con = prompt('请输入要检测的内容，支持正则');
+    let reg = new RegExp(con, 'g')
+    let div = document.querySelector('div');
+    div.innerHTML = div.innerHTML.replace(reg, serach => {
+      return `<span style="color:red">${serach}</span>`
+    })
+  </script>
+</body>
+</html>

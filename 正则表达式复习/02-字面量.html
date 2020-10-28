@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let bh = 'bh.com'
+    // u 如果是变量的话就没办法直接放在正则表达式中
+    console.log(/u/.test(bh))   // false
+
+    let a = 'b'
+    console.log(eval(`/${a}/`).test(bh))    // true
+  </script>
+</body>
+</html>

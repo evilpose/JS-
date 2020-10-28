@@ -20,21 +20,21 @@
             console.log(results)
         })
 
-        function getUsers(names){
-            let promise =  names.map(name=>{
-                return ajax(`http://rap2.taobao.org:38080/app/mock/244950/teacher/${name}`)
-            })
-            return Promise.allSettled(promise)
-        }
-        getUsers(['list','llll']).then(
-            // value=>console.log(value)
-            value=>{
-                let rightData = value.filter(data=>{
-                    return data.status == "fulfilled"
-                })
-                console.log(rightData)
-            }
-        )
+        // function getUsers(names){
+        //     let promise =  names.map(name=>{
+        //         return ajax(`http://rap2.taobao.org:38080/app/mock/244950/teacher/${name}`)
+        //     })
+        //     return Promise.allSettled(promise)
+        // }
+        // getUsers(['list','llll']).then(
+        //     // value=>console.log(value)
+        //     value=>{
+        //         let rightData = value.filter(data=>{
+        //             return data.status == "fulfilled"
+        //         })
+        //         console.log(rightData)
+        //     }
+        // )
         // allSettled总是返回的是成功的所有的请求，可以根据其返回的status来进行筛选
     </script>
 </body>

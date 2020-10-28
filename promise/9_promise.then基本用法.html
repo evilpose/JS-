@@ -8,13 +8,13 @@
 <body>
     <script>
         new Promise((resolve,reject)=>{
-            // resolve('一瓶可乐')
-            reject('钱不够')
+            resolve('一瓶可乐')
+            // reject('钱不够')
         })
-        // .then()   // 这儿的then不做处理就继续往后传递
-        .then(null,a =>{
-            console.log(`处理了失败的状态${a}`)
-        })
+        .then()   // 这儿的then不做处理就继续往后传递
+        // .then(null,a =>{
+        //     console.log(`处理了失败的状态${a}`)
+        // })
         .then(
             value=>{
                 console.log(value)

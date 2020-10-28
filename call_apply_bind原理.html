@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    {
+      let obj = {
+        name: 'Jowie'
+      }
+
+      function addAge(age) {
+        this.age = age
+        return this
+      }
+
+      console.log(addAge.call(obj, 20))
+
+      Function.prototype.newCall = function (...arg) {
+        // 将函数设为对象的属性（方法）
+        // 在构造器的原型里面挂建的功能，这里的this指向的就是它的实例（addAge）
+        let _one =  [...arg][0]
+        _one.fn =  this
+        let result = _one.fn(...[...arg].slice(1))
+        delete _one.fn
+        return result
+      }
+
+      console.log(addAge.newCall(obj, 20))
+
+      Function.prototype.newApply = function(context, args) {
+        let _one = context
+        _one.fn = this
+        let result = _one.fn(args)
+        delete _one.fn
+        return result
+      }
+      console.log(addAge.newApply(obj, [1, 2]))
+    }
+    {
+      let obj = {
+        name: 'Jowie'
+      }
+      function addStuff(age, birth) {
+        this.age = age
+        this.birth = birth
+      }
+      // const addStuffToObj = addStuff.bind(obj, 26)
+      // addStuffToObj(1993)
+      // console.log(obj)
+
+      // 生成新函数
+      // 传入参数
+      // 新函数被调用时，执行传入的函数（使用手动指定作用域）
+
+      Function.prototype.Newbind = function (context) {
+        const func = this,
+        args = [...arguments].slice(1)
+
+        const binded = function() {
+          func.apply(context, args.concat([...arguments]))
+        }
+        return binded
+      }
+      
+      const addStuffToObj = addStuff.Newbind(obj, 26)
+      addStuffToObj(1993)
+      console.log(obj)
+    }
+
+  </script>
+</body>
+</html>

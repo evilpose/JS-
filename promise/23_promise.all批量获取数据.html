@@ -8,11 +8,16 @@
 <body>
     <script src="./js/ajax.js"></script>
     <script>
+        /* 
+            Promise.all([a,b])
+            如果a或者b出错了，那么就拿不到任何数据，直接catch
+            只有a和b都能正常运行拿到数据，才能正常then输出数据
+         */
         const bh1 = new Promise((resolve,reject)=>{
             setTimeout(() => {
-                // resolve("第一个异步")
-                reject("第一个异步失败")
-            }, 1000);
+                resolve("第一个异步")
+                // reject("第一个异步失败")
+            }, 2000);
         })        // 如果在这儿捕获到了那么就被解决掉了 下面就是undefined
         // .catch(
         //     error=>console.log(error)
@@ -27,7 +32,7 @@
         }).catch(
             error=>console.log(error)
         )
-
+/* 
         // 根据用户批量获取用户资料
         const promise = ['list','list'].map(name=>{
             return ajax(`http://rap2.taobao.org:38080/app/mock/244950/teacher/${name}`)
@@ -46,7 +51,7 @@
         }
         getUsers(['list','list']).then(
             value=>console.log(value)
-        )
+        ) */
     </script>
 </body>
 </html>

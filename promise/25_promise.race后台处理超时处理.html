@@ -8,6 +8,8 @@
 <body>
     <script src="./js/ajax.js"></script>
    <script>
+       // race 是比较两个promise 那个快就返回哪一个 ,无论是resolve 还是reject   
+
        const bh1 = new Promise((resolve,reject)=>{
            setTimeout(() => {
                reject('第一个Promise')
