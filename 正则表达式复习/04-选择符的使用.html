@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let bh = 'bh.com'
+    console.log(/bah|@/.test(bh)) // false
+    // | 符号匹配的是左右两边的正式，不是临近的两个字母
+
+    let tel = '010-9999999';
+    let tel2 = '010'
+    console.log(/(010|020)\-\d{7,8}/.test(tel)) // true
+    console.log(/010|020\-\d{7,8}/.test(tel2)) // true
+    console.log(/(010|020)\-\d{7,8}/.test(tel2)) // false
+  </script>
+</body>
+</html>

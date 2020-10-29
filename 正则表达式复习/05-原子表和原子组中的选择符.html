@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 原子表 具有或的意思 不用加 |
+    // let reg = /[123456]/;
+    // let bh = '1';
+    // console.log(bh.match(reg))   // ["1", index: 0, input: "1", groups: undefined]
+
+    // 12 34 为一个整体 不会单独去匹配 1 或者 2 或者 3 或者4
+    let reg = /(12|34)/
+    let bh = '12121212'
+    console.log(bh.match(reg))
+  </script>
+</body>
+</html>
