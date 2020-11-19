@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>canvas</title>
+  <style>
+    body{
+      text-align: center;
+      padding-top: 20px;
+    }
+    canvas{
+      box-shadow: 0 0 10px #3333;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body onload="draw()">
+  <canvas id="canvas" width="500" height="500">
+    你的浏览器太low，无法显示canvas，请更新！
+  </canvas>
+
+  <script>
+    function draw() {
+      let canvas = document.querySelector('#canvas')
+      if (canvas.getContext) {
+        // 如果有canvas.getContext，说明支持当前的浏览器，在其中写code
+        let ctx = canvas.getContext('2d') // 画笔
+      }
+    }
+  </script>
+</body>
+</html>
